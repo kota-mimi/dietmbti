@@ -59,7 +59,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 
   // デフォルトのメタデータ（結果パラメータがない場合）
   console.log('⚠️ Using default metadata (no result or type not found)')
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dietmbti.vercel.app'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://diet-type16.com'
   
   return {
     title: "ダイエットタイプ診断｜あなたの痩せ方、見つかる",

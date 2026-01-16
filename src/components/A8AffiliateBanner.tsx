@@ -32,16 +32,6 @@ const affiliateAds: A8AffiliateAd[] = [
     url: 'https://px.a8.net/svt/ejp?a8mat=4AV4WG+2XZ6GI+3GKQ+NVHCX'
   },
   {
-    name: '遺伝子博士',
-    mobileCode: `<a href="https://px.a8.net/svt/ejp?a8mat=4AV4WG+2XZ6GI+3GKQ+NVHCX" rel="nofollow">
-<img border="0" width="234" height="60" alt="" src="https://www20.a8.net/svt/bgt?aid=260113552178&wid=001&eno=01&mid=s00000016145004010000&mc=1"></a>
-<img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4AV4WG+2XZ6GI+3GKQ+NVHCX" alt="">`,
-    desktopCode: `<a href="https://px.a8.net/svt/ejp?a8mat=4AV4WG+2XZ6GI+3GKQ+NUU7L" rel="nofollow">
-<img border="0" width="300" height="250" alt="" src="https://www26.a8.net/svt/bgt?aid=260113552178&wid=001&eno=01&mid=s00000016145004007000&mc=1"></a>
-<img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4AV4WG+2XZ6GI+3GKQ+NUU7L" alt="">`,
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AV4WG+2XZ6GI+3GKQ+NVHCX'
-  },
-  {
     name: 'スマートリング',
     mobileCode: `<a href="https://px.a8.net/svt/ejp?a8mat=4AV4WG+555TWY+5THY+5ZU29" rel="nofollow">
 <img border="0" width="320" height="50" alt="" src="https://www29.a8.net/svt/bgt?aid=260113552311&wid=001&eno=01&mid=s00000027151001007000&mc=1"></a>
