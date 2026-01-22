@@ -18,7 +18,7 @@ const zenMaruGothic = Zen_Maru_Gothic({
 
 export default function HomeContent() {
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] ${notoSansJP.className}`}>
+    <div className={`min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] md:bg-blue-50 ${notoSansJP.className}`}>
       <main className="flex flex-col justify-center items-center min-h-screen text-center px-4">
         
         {/* メインコンテンツ */}
@@ -29,12 +29,12 @@ export default function HomeContent() {
           className="text-center"
         >
           {/* タイトル */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-blue-600 mb-6">
             ダイエットキャラ診断16
           </h1>
           
           {/* サブタイトル */}
-          <h2 className="text-xl md:text-2xl text-white/90 mb-12">
+          <h2 className="text-xl md:text-2xl text-blue-800 mb-12">
             あなたの性格と、痩せ方が見つかる。
           </h2>
           
