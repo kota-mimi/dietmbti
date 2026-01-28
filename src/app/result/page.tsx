@@ -386,16 +386,15 @@ export default function ResultPage() {
                 {/* Amazon */}
                 <a 
                   href="https://amzn.to/49Wtvvx" 
-                  className="block bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl p-4 border border-orange-200 hover:shadow-lg transition-all"
+                  className="block bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200 hover:shadow-lg transition-all"
                   target="_blank"
                   rel="nofollow noopener"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl">🛒</span>
                       <span className="font-medium text-gray-800">Amazonでダイエット関連商品をチェック</span>
                     </div>
-                    <span className="text-orange-500 font-bold">→</span>
+                    <span className="text-blue-500 font-bold">→</span>
                   </div>
                 </a>
 
