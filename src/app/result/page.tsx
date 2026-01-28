@@ -407,7 +407,6 @@ export default function ResultPage() {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl">🎯</span>
                       <span className="font-medium text-gray-800">楽天でダイエット商品を探す</span>
                     </div>
                     <span className="text-red-500 font-bold">→</span>
