@@ -400,9 +400,10 @@ export default function ResultPage() {
 
                 {/* 楽天 */}
                 <a 
-                  href="#" 
+                  href="https://hb.afl.rakuten.co.jp/hgc/5073158d.7e26866e.5073158e.c2bfcaea/?pc=https%3A%2F%2Franking.rakuten.co.jp%2Fdaily%2F100939%2F&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9" 
                   className="block bg-gradient-to-r from-red-50 to-pink-50 rounded-xl p-4 border border-red-200 hover:shadow-lg transition-all"
-                  onClick={(e) => e.preventDefault()}
+                  target="_blank"
+                  rel="nofollow noopener"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
@@ -412,12 +413,6 @@ export default function ResultPage() {
                     <span className="text-red-500 font-bold">→</span>
                   </div>
                 </a>
-              </div>
-
-              <div className="text-center mt-4">
-                <p className="text-xs text-gray-400">
-                  ※ 商品選択は専門家にご相談ください
-                </p>
               </div>
             </div>
           </motion.div>
