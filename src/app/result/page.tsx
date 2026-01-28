@@ -385,9 +385,10 @@ export default function ResultPage() {
               <div className="space-y-4">
                 {/* Amazon */}
                 <a 
-                  href="#" 
+                  href="https://amzn.to/49Wtvvx" 
                   className="block bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl p-4 border border-orange-200 hover:shadow-lg transition-all"
-                  onClick={(e) => e.preventDefault()}
+                  target="_blank"
+                  rel="nofollow noopener"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
