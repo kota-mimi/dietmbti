@@ -374,13 +374,8 @@ export default function ResultPage() {
             className="space-y-6"
           >
             <h2 className={`text-xl font-bold text-purple-600 text-center ${zenMaruGothic.className}`}>
-              💡 おすすめアイテム
+              おすすめアイテム
             </h2>
-            
-            <div className="max-w-3xl mx-auto">
-              <p className="text-sm text-gray-600 text-center mb-6">
-                同じタイプの方に人気の商品をチェック
-              </p>
               
               <div className="space-y-4">
                 {/* Amazon */}
