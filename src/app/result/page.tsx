@@ -400,7 +400,7 @@ export default function ResultPage() {
 
                 {/* 楽天 */}
                 <a 
-                  href="https://hb.afl.rakuten.co.jp/hgc/5073158d.7e26866e.5073158e.c2bfcaea/?pc=https%3A%2F%2Franking.rakuten.co.jp%2Fdaily%2F100939%2F&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9" 
+                  href="https://hb.afl.rakuten.co.jp/hgc/5073158d.7e26866e.5073158e.c2bfcaea/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2583%2580%25E3%2582%25A4%25E3%2582%25A8%25E3%2583%2583%25E3%2583%2588%2F%3Fs%3D5&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9" 
                   className="block bg-gradient-to-r from-red-50 to-pink-50 rounded-xl p-4 border border-red-200 hover:shadow-lg transition-all"
                   target="_blank"
                   rel="nofollow noopener"
@@ -408,7 +408,7 @@ export default function ResultPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <span className="text-2xl">🎯</span>
-                      <span className="font-medium text-gray-800">楽天で健康・フィットネス用品を探す</span>
+                      <span className="font-medium text-gray-800">楽天でダイエット商品を探す</span>
                     </div>
                     <span className="text-red-500 font-bold">→</span>
                   </div>
