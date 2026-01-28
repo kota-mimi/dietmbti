@@ -366,91 +366,72 @@ export default function ResultPage() {
             </div>
           </motion.div>
 
-          {/* 実践グッズセクション */}
+          {/* 参考情報セクション */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.65 }}
             className="space-y-6"
           >
-            <h2 className={`text-2xl font-bold text-blue-600 text-center ${zenMaruGothic.className}`}>
-              今すぐ始められる実践グッズ
+            <h2 className={`text-2xl font-bold text-gray-800 text-center ${zenMaruGothic.className}`}>
+              参考情報
             </h2>
             
             <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Amazon */}
-                <div className="bg-blue-50/90 backdrop-blur-sm rounded-lg p-6 border border-blue-200 relative overflow-hidden">
-                  <h3 className="text-lg font-bold text-blue-700 mb-4 text-center">🏆 Amazon売れ筋ランキング</h3>
-                  <div className="space-y-3">
+              <p className="text-sm text-gray-600 text-center mb-6">
+                同じタイプの方が実際に購入している商品を参考にしてみてください
+              </p>
+              
+              <div className="space-y-4">
+                <div className="bg-gray-50/90 backdrop-blur-sm rounded-lg p-6 border border-gray-200">
+                  <h3 className="text-base font-bold text-gray-700 mb-4">多くの方が参考にしている商品</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <a 
                       href="#" 
-                      className="block bg-white rounded-lg px-4 py-3 hover:shadow-md transition-shadow border border-blue-100 hover:border-blue-300"
+                      className="text-sm text-gray-700 hover:text-blue-600 hover:underline transition-colors"
                       onClick={(e) => e.preventDefault()}
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-gray-800">ダイエットサプリ TOP10</span>
-                        <span className="text-blue-500 text-sm">→</span>
-                      </div>
+                      ダイエットサプリメント売れ筋商品
                     </a>
                     <a 
                       href="#" 
-                      className="block bg-white rounded-lg px-4 py-3 hover:shadow-md transition-shadow border border-blue-100 hover:border-blue-300"
+                      className="text-sm text-gray-700 hover:text-blue-600 hover:underline transition-colors"
                       onClick={(e) => e.preventDefault()}
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-gray-800">プロテイン 人気商品</span>
-                        <span className="text-blue-500 text-sm">→</span>
-                      </div>
+                      プロテイン人気ランキング
                     </a>
                     <a 
                       href="#" 
-                      className="block bg-white rounded-lg px-4 py-3 hover:shadow-md transition-shadow border border-blue-100 hover:border-blue-300"
+                      className="text-sm text-gray-700 hover:text-blue-600 hover:underline transition-colors"
                       onClick={(e) => e.preventDefault()}
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-gray-800">フィットネス器具一覧</span>
-                        <span className="text-blue-500 text-sm">→</span>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                
-                {/* 楽天 */}
-                <div className="bg-red-50/90 backdrop-blur-sm rounded-lg p-6 border border-red-200 relative overflow-hidden">
-                  <h3 className="text-lg font-bold text-red-700 mb-4 text-center">🥇 楽天ランキング</h3>
-                  <div className="space-y-3">
-                    <a 
-                      href="#" 
-                      className="block bg-white rounded-lg px-4 py-3 hover:shadow-md transition-shadow border border-red-100 hover:border-red-300"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-gray-800">ダイエット・健康 1位</span>
-                        <span className="text-red-500 text-sm">→</span>
-                      </div>
+                      家庭用フィットネス器具
                     </a>
                     <a 
                       href="#" 
-                      className="block bg-white rounded-lg px-4 py-3 hover:shadow-md transition-shadow border border-red-100 hover:border-red-300"
+                      className="text-sm text-gray-700 hover:text-blue-600 hover:underline transition-colors"
                       onClick={(e) => e.preventDefault()}
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-gray-800">スポーツ・アウトドア 1位</span>
-                        <span className="text-red-500 text-sm">→</span>
-                      </div>
+                      健康食品ランキング
                     </a>
                     <a 
                       href="#" 
-                      className="block bg-white rounded-lg px-4 py-3 hover:shadow-md transition-shadow border border-red-100 hover:border-red-300"
+                      className="text-sm text-gray-700 hover:text-blue-600 hover:underline transition-colors"
                       onClick={(e) => e.preventDefault()}
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-gray-800">健康食品ランキング</span>
-                        <span className="text-red-500 text-sm">→</span>
-                      </div>
+                      ダイエット・健康グッズ
+                    </a>
+                    <a 
+                      href="#" 
+                      className="text-sm text-gray-700 hover:text-blue-600 hover:underline transition-colors"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      スポーツ・トレーニング用品
                     </a>
                   </div>
+                  <p className="text-xs text-gray-500 mt-4">
+                    ※ 実際の商品選択は、医師や専門家にご相談の上で行ってください
+                  </p>
                 </div>
               </div>
             </div>
