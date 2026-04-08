@@ -18,7 +18,7 @@ export default function Footer() {
             </div>
           </div>
           <Link 
-            href="https://store.line.me/stickershop/product/your-sticker-id"
+            href="https://lin.ee/S61FXhE"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-green-500 px-4 py-2 rounded-full text-sm font-bold hover:bg-gray-100 transition-colors"

@@ -57,7 +57,7 @@ export default function ContactPage() {
                   <p>✓ 相談・質問もLINEで即OK</p>
                 </div>
                 <a 
-                  href="https://lin.ee/BCYVfcD"
+                  href="https://lin.ee/S61FXhE"
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-block bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition-colors font-bold shadow-lg text-sm"

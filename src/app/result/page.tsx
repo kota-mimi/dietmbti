@@ -85,12 +85,7 @@ export default function ResultPage() {
   }
 
   const handleLineMenuRequest = () => {
-    const typeData = diagramTypes[userType]
-    if (!typeData) return
-
-    const menuText = `【${typeData.name}専用】ヘルシーくん利用希望\n\n診断結果：${userType}\nキャッチコピー：${typeData.catchcopy}\n\nLINEで使えるヘルシーくんを利用したいです！\n専用メニュー・記録機能について詳しく教えてください。`
-    const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(menuText)}`
-    window.open(lineUrl, '_blank')
+    window.open('https://lin.ee/S61FXhE', '_blank')
   }
 
   const handleDownloadImage = async () => {
@@ -246,7 +241,7 @@ export default function ResultPage() {
                     className="w-full h-auto cursor-pointer hover:opacity-90 transition-opacity"
                     onClick={() => {
                       // LINE公式アカウントへ誘導
-                      window.open('https://lin.ee/BCYVfcD', '_blank')
+                      window.open('https://lin.ee/S61FXhE', '_blank')
                     }}
                     quality={95}
                   />

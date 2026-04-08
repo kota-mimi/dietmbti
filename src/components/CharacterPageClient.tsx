@@ -159,7 +159,7 @@ export default function CharacterPageClient({ slug, typeCode, character }: Props
               height={200}
               className="w-full h-auto cursor-pointer hover:opacity-90 transition-opacity rounded-lg shadow-md"
               onClick={() => {
-                window.open('https://lin.ee/BCYVfcD', '_blank')
+                window.open('https://lin.ee/S61FXhE', '_blank')
               }}
               quality={95}
             />
