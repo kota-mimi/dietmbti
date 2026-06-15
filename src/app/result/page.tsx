@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Home, Twitter, MessageSquare, Instagram, Download, Copy } from 'lucide-react'
+import { Twitter, Instagram, Download, Copy, Sparkles, AlertTriangle, Leaf, ShoppingBag, Heart, RefreshCw } from 'lucide-react'
 import Image from 'next/image'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { Noto_Sans_JP, Zen_Maru_Gothic } from 'next/font/google'
@@ -159,11 +159,11 @@ export default function ResultPage() {
 
   if (isLoading) {
     return (
-      <div className={`min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] flex items-center justify-center ${notoSansJP.className}`}>
+      <div className={`min-h-screen bg-app-gradient flex items-center justify-center ${notoSansJP.className}`}>
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className="w-8 h-8 border-2 border-[#2196F3] border-t-transparent rounded-full"
+          className="w-8 h-8 border-2 border-brand-500 border-t-transparent rounded-full"
         />
       </div>
     )
@@ -172,12 +172,12 @@ export default function ResultPage() {
   const typeData = diagramTypes[userType]
   if (!typeData) {
     return (
-      <div className={`min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] flex items-center justify-center ${notoSansJP.className}`}>
+      <div className={`min-h-screen bg-app-gradient flex items-center justify-center ${notoSansJP.className}`}>
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[#333333] mb-4">エラーが発生しました</h1>
+          <h1 className="text-2xl font-bold text-ink-900 mb-4">エラーが発生しました</h1>
           <button
             onClick={handleRestart}
-            className="bg-[#2196F3] text-white px-6 py-3 rounded-full font-bold hover:bg-[#1976D2] transition-colors"
+            className="btn-primary text-white px-6 py-3 rounded-full font-bold transition-colors"
           >
             最初からやり直す
           </button>
@@ -187,7 +187,7 @@ export default function ResultPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] ${notoSansJP.className}`}>
+    <div className={`min-h-screen bg-app-gradient ${notoSansJP.className}`}>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         
         {/* メインコンテンツカード */}
@@ -196,7 +196,7 @@ export default function ResultPage() {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="bg-white rounded-3xl shadow-2xl p-8 md:p-12"
+          className="card-surface rounded-3xl p-6 md:p-12"
         >
           
           {/* キャラクター画像とタイトル */}
@@ -260,9 +260,14 @@ export default function ResultPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="space-y-6"
           >
-            <h2 className={`text-2xl font-bold text-gray-800 text-center ${zenMaruGothic.className}`}>
-              基本生態
-            </h2>
+            <div className="flex items-center justify-center gap-2">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-100 text-brand-600">
+                <Sparkles className="h-5 w-5" />
+              </span>
+              <h2 className={`text-2xl font-bold text-ink-900 ${zenMaruGothic.className}`}>
+                基本生態
+              </h2>
+            </div>
             <div className="text-sm md:text-base leading-relaxed text-gray-700 space-y-4 max-w-4xl mx-auto text-left">
               {typeData.detailedEcology.split('。').map((sentence, index, array) => (
                 <p key={index} className="mb-4">
@@ -280,9 +285,14 @@ export default function ResultPage() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="space-y-6"
           >
-            <h2 className={`text-2xl font-bold text-red-600 text-center ${zenMaruGothic.className}`}>
-              太る原因
-            </h2>
+            <div className="flex items-center justify-center gap-2">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-red-100 text-red-600">
+                <AlertTriangle className="h-5 w-5" />
+              </span>
+              <h2 className={`text-2xl font-bold text-red-600 ${zenMaruGothic.className}`}>
+                太る原因
+              </h2>
+            </div>
             <div className="max-w-4xl mx-auto">
               <div className="space-y-4 md:space-y-6">
                 <h3 className="text-base md:text-lg font-bold text-red-700 text-center">
@@ -324,9 +334,14 @@ export default function ResultPage() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="space-y-6"
           >
-            <h2 className={`text-2xl font-bold text-green-600 text-center ${zenMaruGothic.className}`}>
-              あなただけの痩せ方
-            </h2>
+            <div className="flex items-center justify-center gap-2">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-100 text-green-600">
+                <Leaf className="h-5 w-5" />
+              </span>
+              <h2 className={`text-2xl font-bold text-green-600 ${zenMaruGothic.className}`}>
+                あなただけの痩せ方
+              </h2>
+            </div>
             <div className="max-w-4xl mx-auto">
               <div className="space-y-4 md:space-y-6">
                 <h3 className="text-base md:text-lg font-bold text-green-700 text-center">
@@ -368,40 +383,47 @@ export default function ResultPage() {
             transition={{ duration: 0.6, delay: 0.65 }}
             className="space-y-6"
           >
-            <h2 className={`text-xl font-bold text-purple-600 text-center ${zenMaruGothic.className}`}>
-              おすすめアイテム
-            </h2>
+            <div className="flex items-center justify-center gap-2">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                <ShoppingBag className="h-5 w-5" />
+              </span>
+              <h2 className={`text-xl font-bold text-purple-600 ${zenMaruGothic.className}`}>
+                おすすめアイテム
+              </h2>
+            </div>
             
             <div className="max-w-3xl mx-auto">
               <div className="space-y-4">
                 {/* Amazon */}
                 <a 
                   href="https://amzn.to/49Wtvvx" 
-                  className="block bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200 hover:shadow-lg transition-all"
+                  className="group flex items-center justify-between rounded-2xl border border-blue-100 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 transition-all hover:-translate-y-0.5 hover:shadow-card"
                   target="_blank"
                   rel="nofollow noopener"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <span className="font-medium text-gray-800">Amazonでダイエット関連商品をチェック</span>
-                    </div>
-                    <span className="text-blue-500 font-bold">→</span>
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+                      <ShoppingBag className="h-5 w-5" />
+                    </span>
+                    <span className="font-semibold text-ink-900">Amazonでダイエット関連商品をチェック</span>
                   </div>
+                  <span className="text-blue-500 transition-transform group-hover:translate-x-1">→</span>
                 </a>
 
                 {/* 楽天 */}
                 <a 
                   href="https://hb.afl.rakuten.co.jp/hgc/5073158d.7e26866e.5073158e.c2bfcaea/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2583%2580%25E3%2582%25A4%25E3%2582%25A8%25E3%2583%2583%25E3%2583%2588%2F%3Fs%3D5&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9" 
-                  className="block bg-gradient-to-r from-red-50 to-pink-50 rounded-xl p-4 border border-red-200 hover:shadow-lg transition-all"
+                  className="group flex items-center justify-between rounded-2xl border border-red-100 bg-gradient-to-r from-red-50 to-pink-50 p-4 transition-all hover:-translate-y-0.5 hover:shadow-card"
                   target="_blank"
                   rel="nofollow noopener"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <span className="font-medium text-gray-800">楽天でダイエット商品を探す</span>
-                    </div>
-                    <span className="text-red-500 font-bold">→</span>
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-100 text-red-500">
+                      <ShoppingBag className="h-5 w-5" />
+                    </span>
+                    <span className="font-semibold text-ink-900">楽天でダイエット商品を探す</span>
                   </div>
+                  <span className="text-red-500 transition-transform group-hover:translate-x-1">→</span>
                 </a>
               </div>
             </div>
@@ -414,9 +436,14 @@ export default function ResultPage() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="space-y-8"
           >
-            <h2 className={`text-2xl font-bold text-pink-500 text-center ${zenMaruGothic.className}`}>
-              相性チェック
-            </h2>
+            <div className="flex items-center justify-center gap-2">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-pink-100 text-pink-500">
+                <Heart className="h-5 w-5" />
+              </span>
+              <h2 className={`text-2xl font-bold text-pink-500 ${zenMaruGothic.className}`}>
+                相性チェック
+              </h2>
+            </div>
             
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -551,12 +578,15 @@ export default function ResultPage() {
 
           {/* ボタンエリア */}
           <div className="text-center pt-8 space-y-4">
-            <button
+            <motion.button
               onClick={handleRestart}
-              className={`inline-block bg-[#2196F3] text-white px-8 py-3 rounded-full hover:bg-[#1976D2] transition-colors font-bold shadow-lg text-lg ${notoSansJP.className}`}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className={`btn-primary inline-flex items-center gap-2 text-white px-8 py-3 rounded-full font-bold text-lg ${notoSansJP.className}`}
             >
+              <RefreshCw className="h-5 w-5" />
               もう一度診断する
-            </button>
+            </motion.button>
           </div>
 
           {/* A8アフィリエイトバナー */}

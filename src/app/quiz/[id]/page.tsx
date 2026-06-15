@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Check } from 'lucide-react'
 import { Noto_Sans_JP } from 'next/font/google'
 import { getQuestionGroupByPage, getTotalPages } from '@/lib/questionGroups'
 import { Answer } from '@/types'
@@ -135,31 +135,33 @@ export default function QuizPage() {
   const allAnswered = questionGroup.every(q => answers[q.id] !== undefined)
 
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] ${notoSansJP.className}`}>
-      {/* プログレスバー */}
-      <div className="w-full bg-gray-100 h-2">
-        <motion.div
-          className="h-full bg-[#87CEEB]"
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.3 }}
-        />
+    <div className={`min-h-screen bg-app-gradient ${notoSansJP.className}`}>
+      {/* プログレスバー（固定） */}
+      <div className="sticky top-0 z-20 w-full bg-white/70 backdrop-blur">
+        <div className="h-1.5 w-full bg-brand-100">
+          <motion.div
+            className="h-full rounded-r-full bg-gradient-to-r from-brand-400 to-brand-600"
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          />
+        </div>
       </div>
 
       <div className="container mx-auto px-4 py-8">
         {/* ヘッダー */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="mb-8 flex items-center justify-between">
           <motion.button
             onClick={handleBack}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-all"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-200 bg-white/80 text-ink-700 shadow-soft backdrop-blur transition-all hover:bg-white"
           >
-            <ArrowLeft className="w-6 h-6 text-[#333333]" />
+            <ArrowLeft className="h-5 w-5" />
           </motion.button>
-          
-          <span className="text-[#666666] font-medium">
-            ページ {pageNumber} / {totalPages}
+
+          <span className="rounded-full bg-white/70 px-4 py-1.5 text-sm font-semibold text-brand-700 shadow-soft backdrop-blur">
+            {pageNumber} <span className="text-ink-300">/</span> {totalPages}
           </span>
         </div>
 
@@ -173,127 +175,125 @@ export default function QuizPage() {
             className="max-w-4xl mx-auto space-y-8"
           >
             {/* 質問リスト */}
-            <div className="bg-white border border-gray-200 rounded-xl p-8 space-y-8">
+            <div className="card-surface space-y-8 rounded-3xl p-6 md:p-10">
               {questionGroup.map((question, index) => (
-                <div key={question.id} id={`question-${question.id}`} className="space-y-4 scroll-mt-20">
-                  <h3 className="text-base md:text-lg font-medium text-[#333333] text-left leading-relaxed">
-                    {question.text}
-                  </h3>
+                <div key={question.id} id={`question-${question.id}`} className="space-y-4 scroll-mt-24">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">
+                      {index + 1}
+                    </span>
+                    <h3 className="text-base md:text-lg font-semibold text-ink-900 text-left leading-relaxed">
+                      {question.text}
+                    </h3>
+                  </div>
 
                   {/* 4段階スケール - モバイル最適化版 */}
                   <div className="w-full mx-auto py-4">
                     {/* スマホ用レイアウト */}
                     <div className="sm:hidden">
-                      <div className="space-y-4">
-                        {/* ボタン群 - スマホ用サイズ */}
-                        <div className="flex justify-center gap-4">
+                      <div className="space-y-3">
+                        <div className="flex items-end justify-center gap-3">
                           {[3, 1, -1, -3].map((score, scoreIndex) => {
                             const isSelected = answers[question.id] === score
-                            const size = scoreIndex === 0 || scoreIndex === 3 ? 'w-12 h-12' : 'w-10 h-10'
-                            
-                            const colorStyle = scoreIndex <= 1 ? {
-                              borderColor: isSelected ? '#87CEEB' : '#87CEEB',
-                              backgroundColor: isSelected ? '#87CEEB' : 'transparent'
-                            } : {
-                              borderColor: isSelected ? '#FFB366' : '#FFB366', 
-                              backgroundColor: isSelected ? '#FFB366' : 'transparent'
-                            }
-                            
+                            const isAgree = scoreIndex <= 1
+                            const size = scoreIndex === 0 || scoreIndex === 3 ? 'w-14 h-14' : 'w-11 h-11'
+                            const ring = isAgree ? 'border-brand-400' : 'border-accent-400'
+                            const fill = isAgree
+                              ? 'bg-gradient-to-br from-brand-300 to-brand-500'
+                              : 'bg-gradient-to-br from-accent-300 to-accent-500'
+
                             return (
                               <motion.button
                                 key={score}
                                 onClick={() => handleAnswerSelect(question.id, score)}
-                                whileHover={{ scale: 1.1 }}
+                                whileHover={{ scale: 1.12 }}
                                 whileTap={{ scale: 0.9 }}
-                                className={`${size} rounded-full transition-all duration-300 border-2`}
-                                style={colorStyle}
-                              />
+                                className={`${size} flex items-center justify-center rounded-full border-2 transition-all duration-300 ${ring} ${
+                                  isSelected ? `${fill} shadow-glow` : 'bg-white'
+                                }`}
+                              >
+                                {isSelected && <Check className="h-5 w-5 text-white" strokeWidth={3} />}
+                              </motion.button>
                             )
                           })}
                         </div>
-                        
-                        {/* ラベル */}
-                        <div className="flex justify-between text-xs px-2">
-                          <span className="text-black font-medium">そう思う</span>
-                          <span className="text-black font-medium">そう思わない</span>
+
+                        <div className="flex justify-between px-1 text-xs font-semibold">
+                          <span className="text-brand-600">そう思う</span>
+                          <span className="text-accent-500">そう思わない</span>
                         </div>
                       </div>
                     </div>
 
                     {/* PC/タブレット用レイアウト */}
                     <div className="hidden sm:block">
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-center gap-6">
-                          <div className="flex items-center gap-3">
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-center gap-5">
                           {[3, 1, -1, -3].map((score, scoreIndex) => {
                             const isSelected = answers[question.id] === score
-                            const size = scoreIndex === 0 ? 'w-16 h-16' :
-                                        scoreIndex === 1 ? 'w-12 h-12' :
-                                        scoreIndex === 2 ? 'w-12 h-12' :
-                                        'w-16 h-16'
-                            
-                            const colorStyle = scoreIndex <= 1 ? {
-                              borderColor: isSelected ? '#87CEEB' : '#87CEEB',
-                              backgroundColor: isSelected ? '#87CEEB' : 'transparent'
-                            } : {
-                              borderColor: isSelected ? '#FFB366' : '#FFB366', 
-                              backgroundColor: isSelected ? '#FFB366' : 'transparent'
-                            }
-                            
+                            const isAgree = scoreIndex <= 1
+                            const size = scoreIndex === 0 || scoreIndex === 3 ? 'w-16 h-16' : 'w-12 h-12'
+                            const ring = isAgree ? 'border-brand-400' : 'border-accent-400'
+                            const fill = isAgree
+                              ? 'bg-gradient-to-br from-brand-300 to-brand-500'
+                              : 'bg-gradient-to-br from-accent-300 to-accent-500'
+
                             return (
                               <motion.button
                                 key={score}
                                 onClick={() => handleAnswerSelect(question.id, score)}
-                                whileHover={{ scale: 1.1 }}
+                                whileHover={{ scale: 1.12 }}
                                 whileTap={{ scale: 0.9 }}
-                                className={`${size} rounded-full transition-all duration-300 border-2`}
-                                style={colorStyle}
-                              />
+                                className={`${size} flex items-center justify-center rounded-full border-2 transition-all duration-300 ${ring} ${
+                                  isSelected ? `${fill} shadow-glow` : 'bg-white hover:bg-brand-50'
+                                }`}
+                              >
+                                {isSelected && <Check className="h-6 w-6 text-white" strokeWidth={3} />}
+                              </motion.button>
                             )
                           })}
-                          </div>
                         </div>
-                        
-                        <div className="flex justify-between text-sm px-8">
-                          <span className="text-black font-medium">そう思う</span>
-                          <span className="text-black font-medium">そう思わない</span>
+
+                        <div className="flex justify-between px-6 text-sm font-semibold">
+                          <span className="text-brand-600">そう思う</span>
+                          <span className="text-accent-500">そう思わない</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {index < questionGroup.length - 1 && (
-                    <hr className="border-gray-200 my-6" />
+                    <hr className="my-6 border-brand-100" />
                   )}
                 </div>
               ))}
             </div>
 
             {/* 進捗インジケーター */}
-            <div className="bg-white border border-gray-200 rounded-lg p-4 text-center">
-              <div className="mb-3">
-                <span className="text-[#666666] text-sm">
-                  {Object.keys(answers).length} / {questionGroup.length}
-                </span>
+            <div className="card-surface rounded-2xl p-5 text-center">
+              <div className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-ink-500">
+                <span className="text-brand-600 font-bold">{Object.keys(answers).length}</span>
+                <span className="text-ink-300">/</span>
+                <span>{questionGroup.length} 問 回答済み</span>
               </div>
-              
+
               {/* 次へボタン */}
               <motion.button
                 onClick={handleNext}
                 disabled={!allAnswered || isLoading}
                 whileHover={allAnswered ? { scale: 1.02 } : {}}
                 whileTap={allAnswered ? { scale: 0.98 } : {}}
-                className={`w-full py-3 rounded-lg font-medium text-base transition-all duration-300 ${
+                className={`w-full rounded-full py-3.5 text-base font-bold transition-all duration-300 ${
                   allAnswered
-                    ? 'bg-[#87CEEB] hover:bg-[#7BB5E0] text-white'
-                    : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                    ? 'btn-primary text-white'
+                    : 'cursor-not-allowed bg-brand-100 text-ink-300'
                 }`}
               >
                 {isLoading ? (
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mx-auto"
+                    className="mx-auto h-5 w-5 rounded-full border-2 border-white border-t-transparent"
                   />
                 ) : pageNumber < totalPages ? (
                   '次へ'
@@ -303,7 +303,7 @@ export default function QuizPage() {
               </motion.button>
 
               {!allAnswered && (
-                <div className="text-[#999999] text-xs mt-2">
+                <div className="mt-2 text-xs text-ink-300">
                   全ての質問に回答してください
                 </div>
               )}
