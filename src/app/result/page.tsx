@@ -223,31 +223,29 @@ export default function ResultPage() {
               
             </div>
 
-            {/* 広告バナーエリア */}
-            <motion.div
+            {/* 広告バナーエリア（無効化） */}
+            {/* <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex justify-center mt-8"
             >
               <div className="w-full max-w-lg">
-                {/* 広告画像をここに配置 */}
                 <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                   <Image
-                    src="/ads/line-app-ad.png" // 作成予定の広告画像
+                    src="/ads/line-app-ad.png"
                     alt="LINEアプリ広告"
                     width={500}
                     height={300}
                     className="w-full h-auto cursor-pointer hover:opacity-90 transition-opacity"
                     onClick={() => {
-                      // LINE公式アカウントへ誘導
                       window.open('https://lin.ee/S61FXhE', '_blank')
                     }}
                     quality={95}
                   />
                 </div>
               </div>
-            </motion.div>
+            </motion.div> */}
           </div>
 
           {/* セクションごとの直接配置 */}
