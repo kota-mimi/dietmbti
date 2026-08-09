@@ -77,7 +77,7 @@ export default function HomeContent() {
           <div className="mb-14 flex items-center justify-center gap-6 text-sm text-ink-500">
             <span className="inline-flex items-center gap-1.5">
               <Clock className="h-4 w-4 text-brand-400" />
-              約3分・全20問
+              約3分・全24問
             </span>
             <span className="h-4 w-px bg-ink-300/40" />
             <span className="inline-flex items-center gap-1.5">

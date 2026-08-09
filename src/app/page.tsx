@@ -63,10 +63,10 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   
   return {
     title: "ダイエットタイプ診断｜あなたの痩せ方、見つかる",
-    description: "16タイプのダイエット性格診断で、あなたに最適なダイエット方法を発見。20問・約3分で完了。",
+    description: "16タイプのダイエット性格診断で、あなたに最適なダイエット方法を発見。24問・約3分で完了。",
     openGraph: {
       title: "ダイエットタイプ診断｜あなたの痩せ方、見つかる",
-      description: "16タイプのダイエット性格診断で、あなたに最適なダイエット方法を発見。20問・約3分で完了。",
+      description: "16タイプのダイエット性格診断で、あなたに最適なダイエット方法を発見。24問・約3分で完了。",
       images: [
         {
           url: `${baseUrl}/og-image.png`,
@@ -81,7 +81,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     twitter: {
       card: 'summary_large_image',
       title: 'ダイエットタイプ診断｜あなたの痩せ方、見つかる',
-      description: '16タイプのダイエット性格診断で、あなたに最適なダイエット方法を発見。20問・約3分で完了。',
+      description: '16タイプのダイエット性格診断で、あなたに最適なダイエット方法を発見。24問・約3分で完了。',
       images: [`${baseUrl}/og-image.png`],
     },
   }
