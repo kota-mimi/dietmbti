@@ -31,7 +31,7 @@ export const diagramTypes: DiagramTypes = {
     }
   },
   SRFL: {
-    name: 'サイレント美活家',
+    name: 'ステルス美活家',
     emoji: '🌱',
     catchcopy: '何もしてないは全部嘘。',
     relatable: [
@@ -118,7 +118,7 @@ export const diagramTypes: DiagramTypes = {
     }
   },
   SEFQ: {
-    name: '気まぐれキャット',
+    name: '三日坊主の女王',
     emoji: '🐱',
     catchcopy: '熱しやすく冷めやすい、気まぐれハンター。',
     relatable: [
@@ -147,7 +147,7 @@ export const diagramTypes: DiagramTypes = {
     }
   },
   SEFL: {
-    name: '第六感ダイエッター',
+    name: 'なんとなくヘルシー教',
     emoji: '🔮',
     catchcopy: '『巡り』と『デトックス』を愛する感覚派。',
     relatable: [
@@ -205,7 +205,7 @@ export const diagramTypes: DiagramTypes = {
     }
   },
   SECL: {
-    name: 'ノウハウ収集家',
+    name: '脳内アスリート',
     emoji: '🏃‍♂️',
     catchcopy: '知識だけなら、オリンピック代表級。',
     relatable: [
@@ -379,7 +379,7 @@ export const diagramTypes: DiagramTypes = {
     }
   },
   GEFL: {
-    name: 'ファッションダイエッター',
+    name: '映えダイエッター',
     emoji: '✨',
     catchcopy: '痩せることより、ダイエットしてる私が好き。',
     relatable: [
