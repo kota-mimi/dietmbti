@@ -225,9 +225,9 @@ export default function ResultPage() {
                   <Image
                     src={`/characters/${userType}_new3.png`}
                     alt={`${typeData.name}のキャラクター`}
-                    width={640}
-                    height={760}
-                    className="w-full max-w-lg h-auto rounded-2xl"
+                    width={1024}
+                    height={1024}
+                    className="w-full max-w-md h-auto"
                     quality={95}
                     onError={() => setImageError(true)}
                     priority
@@ -236,7 +236,20 @@ export default function ResultPage() {
                   <div className="text-6xl drop-shadow-xl sm:text-7xl md:text-8xl">{typeData.emoji}</div>
                 )}
               </div>
-              
+
+            </div>
+
+            {/* タイプ名・キャッチコピー */}
+            <div className="mt-4 text-center">
+              <span className="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-bold tracking-[0.2em] text-brand-600">
+                {userType}
+              </span>
+              <h1 className={`mt-3 text-3xl font-bold text-ink-900 md:text-4xl ${zenMaruGothic.className}`}>
+                {typeData.name}
+              </h1>
+              <p className="mt-2 text-base font-medium text-brand-600 md:text-lg">
+                {typeData.catchcopy}
+              </p>
             </div>
 
             {/* 広告バナーエリア（無効化） */}
