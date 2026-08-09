@@ -36,11 +36,16 @@ export function calculateScore(answers: Answer[]): Score {
 export function determineType(scores: Score): string {
   let typeCode = '';
 
-  // 各軸の判定（0を境界とした判定）
-  typeCode += scores.SG >= 0 ? 'S' : 'G';
-  typeCode += scores.RE >= 0 ? 'R' : 'E';
-  typeCode += scores.FC >= 0 ? 'F' : 'C';
-  typeCode += scores.QL >= 0 ? 'Q' : 'L';
+  // 各軸の判定。
+  // 同点（スコア0）の扱いは軸ごとにあえて分散させている。
+  // 全軸を一律 ">= 0" にすると、バランスよく答えた人・迷って揺れた人が
+  // 必ず最も極端な「SRFQ（鶏むね仙人）」に落ちてしまうため。
+  // 同点時は S/R/F/Q に一律で寄せず、より共感されやすい中庸タイプ
+  //（GRFL＝女子会ランチの守護神）へ着地するよう境界を調整している。
+  typeCode += scores.SG > 0 ? 'S' : 'G';   // 同点 → G（みんな型）
+  typeCode += scores.RE >= 0 ? 'R' : 'E';  // 同点 → R（計画型）
+  typeCode += scores.FC >= 0 ? 'F' : 'C';  // 同点 → F（質重視型）
+  typeCode += scores.QL > 0 ? 'Q' : 'L';   // 同点 → L（じっくり型）
 
   return typeCode;
 }

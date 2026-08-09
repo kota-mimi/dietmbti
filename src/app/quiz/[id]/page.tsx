@@ -38,7 +38,13 @@ export default function QuizPage() {
     }
   }, [savedAnswers])
 
-  const progress = ((pageNumber - 1) / totalPages) * 100
+  // このページで回答済みの問題数に応じて、進捗バーを滑らかに埋める。
+  // （旧実装は (pageNumber-1)/totalPages で、最終ページでも最大66%までしか伸びなかった）
+  const answeredInGroup = questionGroup
+    ? questionGroup.filter(q => answers[q.id] !== undefined).length
+    : 0
+  const groupSize = questionGroup?.length || 1
+  const progress = ((pageNumber - 1 + answeredInGroup / groupSize) / totalPages) * 100
 
   const handleAnswerSelect = (questionId: number, score: number) => {
     const newAnswers = {

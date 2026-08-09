@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Twitter, Instagram, Download, Copy, Sparkles, AlertTriangle, Leaf, ShoppingBag, Heart, RefreshCw } from 'lucide-react'
+import { Twitter, Instagram, Download, Copy, Sparkles, AlertTriangle, Leaf, ShoppingBag, Heart, RefreshCw, BarChart3 } from 'lucide-react'
 import Image from 'next/image'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { Noto_Sans_JP, Zen_Maru_Gothic } from 'next/font/google'
-import { getTypeFromAnswers } from '@/lib/scoring'
+import { getTypeFromAnswers, calculateScore } from '@/lib/scoring'
 import { diagramTypes } from '@/data/diagramTypes'
-import { Answer } from '@/types'
+import { Answer, Score } from '@/types'
 import A8AffiliateBanner from '@/components/A8AffiliateBanner'
 import { characterSlugs } from '@/data/characterSlugs'
 
@@ -30,35 +30,42 @@ export default function ResultPage() {
   const [userType, setUserType] = useState<string>('')
   const [isLoading, setIsLoading] = useState(true)
   const [imageError, setImageError] = useState(false)
+  const [axisScores, setAxisScores] = useState<Score | null>(null)
 
   useEffect(() => {
-    // まずローカルストレージから直接タイプを確認
-    const savedType = localStorage.getItem('diet-quiz-result-type')
-    if (savedType && diagramTypes[savedType]) {
-      setUserType(savedType)
-      setIsLoading(false)
-      return
-    }
-
-    // タイプが保存されていない場合は従来の方法で計算
+    // 回答（24問）が保存されていれば取り出す
+    let answers: Answer[] | null = null
     const savedAnswers = localStorage.getItem('diet-quiz-answers')
-    if (!savedAnswers) {
+    if (savedAnswers) {
+      try {
+        const parsed = JSON.parse(savedAnswers)
+        if (Array.isArray(parsed) && parsed.length === 24) {
+          answers = parsed
+        }
+      } catch {
+        answers = null
+      }
+    }
+
+    // タイプの決定：保存済みタイプ優先、なければ回答から計算
+    const savedType = localStorage.getItem('diet-quiz-result-type')
+    let typeCode = ''
+    if (savedType && diagramTypes[savedType]) {
+      typeCode = savedType
+    } else if (answers) {
+      typeCode = getTypeFromAnswers(answers)
+    } else {
+      // 有効なデータがない場合はトップへ
       router.push('/')
       return
     }
 
-    const answers: Answer[] = JSON.parse(savedAnswers)
-    if (answers.length !== 24) {
-      router.push('/')
-      return
+    // 各軸のスコア（傾向グラフ用）は回答があるときだけ算出
+    if (answers) {
+      setAxisScores(calculateScore(answers))
     }
-
-    const typeCode = getTypeFromAnswers(answers)
-    // Use setTimeout to avoid synchronous state update
-    setTimeout(() => {
-      setUserType(typeCode)
-      setIsLoading(false)
-    }, 0)
+    setUserType(typeCode)
+    setIsLoading(false)
   }, [router])
 
   const handleShare = (platform: string) => {
@@ -186,6 +193,15 @@ export default function ResultPage() {
     )
   }
 
+  // 傾向グラフ用の軸メタ情報（positiveスコア→ right 側の極）
+  const AXES = [
+    { idx: 0, left: { code: 'G', label: 'みんなで型' }, right: { code: 'S', label: 'ソロ型' } },
+    { idx: 1, left: { code: 'E', label: '気分型' }, right: { code: 'R', label: '計画型' } },
+    { idx: 2, left: { code: 'C', label: 'カロリー型' }, right: { code: 'F', label: '質重視型' } },
+    { idx: 3, left: { code: 'L', label: 'じっくり型' }, right: { code: 'Q', label: '短期集中型' } },
+  ] as const
+  const axisKeys: (keyof Score)[] = ['SG', 'RE', 'FC', 'QL']
+
   return (
     <div className={`min-h-screen bg-app-gradient ${notoSansJP.className}`}>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -250,7 +266,63 @@ export default function ResultPage() {
 
           {/* セクションごとの直接配置 */}
           <div className="space-y-10">
-          
+
+          {/* あなたの傾向グラフ */}
+          {axisScores && (
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="space-y-6"
+            >
+              <div className="flex items-center justify-center gap-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-100 text-brand-600">
+                  <BarChart3 className="h-5 w-5" />
+                </span>
+                <h2 className={`text-2xl font-bold text-ink-900 ${zenMaruGothic.className}`}>
+                  あなたの傾向
+                </h2>
+              </div>
+
+              <div className="mx-auto max-w-2xl space-y-5">
+                {AXES.map((axis, i) => {
+                  const score = axisScores[axisKeys[i]]
+                  const markerPct = Math.min(96, Math.max(4, ((score + 18) / 36) * 100))
+                  const userLetter = userType[axis.idx]
+                  const leftActive = userLetter === axis.left.code
+                  const rightActive = userLetter === axis.right.code
+                  const lean = Math.abs(score)
+                  const strength = lean >= 12 ? 'かなり' : lean >= 6 ? 'やや' : 'ちょっと'
+                  return (
+                    <div key={axis.idx} className="space-y-1.5">
+                      <div className="flex items-center justify-between text-xs font-semibold md:text-sm">
+                        <span className={leftActive ? 'text-brand-600' : 'text-ink-300'}>
+                          {leftActive && lean >= 1 ? `${strength} ` : ''}{axis.left.label}
+                        </span>
+                        <span className={rightActive ? 'text-brand-600' : 'text-ink-300'}>
+                          {rightActive && lean >= 1 ? `${strength} ` : ''}{axis.right.label}
+                        </span>
+                      </div>
+                      <div className="relative h-2.5 rounded-full bg-brand-100">
+                        {/* 中央ライン */}
+                        <div className="absolute left-1/2 top-1/2 h-3.5 w-px -translate-x-1/2 -translate-y-1/2 bg-brand-200" />
+                        {/* マーカー */}
+                        <div
+                          className="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-gradient-to-br from-brand-400 to-brand-600 shadow-glow"
+                          style={{ left: `${markerPct}%` }}
+                        />
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+
+              <p className="text-center text-xs text-ink-500">
+                あなたのタイプは <span className="font-bold text-brand-600">{userType}</span> ―「{typeData.name}」。4つの軸のバランスで16タイプに分かれます。
+              </p>
+            </motion.div>
+          )}
+
           {/* 基本生態セクション */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -596,6 +668,11 @@ export default function ResultPage() {
           >
             <A8AffiliateBanner />
           </motion.div>
+
+          {/* 免責事項 */}
+          <p className="mt-6 px-4 text-center text-[11px] leading-relaxed text-ink-300">
+            ※本診断はエンターテインメントを目的としたもので、医療・栄養上のアドバイスではありません。体調や食事・運動に不安がある場合は、医師・専門家にご相談ください。
+          </p>
 
         </motion.div>
         
