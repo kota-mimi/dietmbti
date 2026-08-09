@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Twitter, Instagram, Download, Copy, Sparkles, AlertTriangle, Leaf, ShoppingBag, Heart, RefreshCw, BarChart3 } from 'lucide-react'
+import { Twitter, Instagram, Download, Copy, Sparkles, AlertTriangle, Leaf, ShoppingBag, Heart, RefreshCw, BarChart3, CheckCircle2, Star } from 'lucide-react'
 import Image from 'next/image'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { Noto_Sans_JP, Zen_Maru_Gothic } from 'next/font/google'
@@ -348,11 +348,66 @@ export default function ResultPage() {
             </div>
           </motion.div>
 
-          {/* 太る原因セクション */}
+          {/* あるあるセクション */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="space-y-6"
+          >
+            <div className="flex items-center justify-center gap-2">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                <CheckCircle2 className="h-5 w-5" />
+              </span>
+              <h2 className={`text-2xl font-bold text-ink-900 ${zenMaruGothic.className}`}>
+                {typeData.name}あるある
+              </h2>
+            </div>
+            <p className="text-center text-xs text-ink-500">いくつ当てはまる…？</p>
+            <div className="mx-auto max-w-2xl">
+              <ul className="space-y-3">
+                {typeData.relatable.map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 rounded-2xl border border-amber-100 bg-amber-50/60 px-4 py-3"
+                  >
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
+                    <span className="text-left text-sm leading-relaxed text-ink-700 md:text-base">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* あなたの強みセクション */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
+            className="space-y-6"
+          >
+            <div className="flex items-center justify-center gap-2">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-100 text-brand-600">
+                <Star className="h-5 w-5" />
+              </span>
+              <h2 className={`text-2xl font-bold text-brand-600 ${zenMaruGothic.className}`}>
+                あなたの強み
+              </h2>
+            </div>
+            <div className="mx-auto max-w-2xl">
+              <div className="rounded-2xl border border-brand-100 bg-gradient-to-br from-brand-50 to-white p-5 md:p-6">
+                <p className="text-left text-sm leading-relaxed text-ink-700 md:text-base">
+                  {typeData.strengths}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 太る原因セクション */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
             className="space-y-6"
           >
             <div className="flex items-center justify-center gap-2">

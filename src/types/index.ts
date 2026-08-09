@@ -15,6 +15,8 @@ export interface DiagramType {
   solution: string;
   causeTitle: string;
   solutionTitle: string;
+  relatable: string[];
+  strengths: string;
   compatibility: {
     good: {
       type: string;
