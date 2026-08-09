@@ -24,13 +24,24 @@ export default function QuizPage() {
   const [savedAnswers, setSavedAnswers] = useState<Answer[]>([])
   const [isLoading, setIsLoading] = useState(false)
   
-  // ローカルストレージから回答を取得・保存
+  // ページが変わるたびに、そのページの保存済み回答を復元する。
+  // （戻る/進むで再訪したとき、以前の選択がハイライト表示されるようにする）
   useEffect(() => {
     const saved = localStorage.getItem('diet-quiz-answers')
-    if (saved) {
-      setSavedAnswers(JSON.parse(saved))
+    const parsed: Answer[] = saved ? JSON.parse(saved) : []
+    setSavedAnswers(parsed)
+
+    const group = getQuestionGroupByPage(pageNumber)
+    const restored: { [key: number]: number } = {}
+    if (group) {
+      parsed.forEach((a) => {
+        if (group.some((q) => q.id === a.questionId)) {
+          restored[a.questionId] = a.score
+        }
+      })
     }
-  }, [])
+    setAnswers(restored)
+  }, [pageNumber])
   
   useEffect(() => {
     if (savedAnswers.length > 0) {
