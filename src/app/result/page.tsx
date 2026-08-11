@@ -493,6 +493,33 @@ export default function ResultPage() {
           </div>
         </motion.div>
 
+        {/* LINE：控えめに1枚だけ（押し売りしない） */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto mt-12 max-w-md"
+        >
+          <div className="rounded-3xl border border-brand-100 bg-gradient-to-br from-brand-50 to-white p-6 text-center shadow-soft">
+            <p className="text-[11px] font-bold tracking-[0.28em] text-brand-500">もっと知りたい人へ</p>
+            <p className={`mt-2 text-lg font-bold leading-snug text-ink-900 ${zenMaruGothic.className}`}>
+              「{typeData.name}」のあなたに合った痩せ方のコツ、<br className="hidden sm:block" />LINEでこっそり受け取りませんか？
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-500">
+              タイプ別のちょっとしたヒントをお届けします。合わなければいつでもブロックでOK。
+            </p>
+            <a
+              href="https://lin.ee/S61FXhE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#06C755] px-8 py-3 text-base font-bold text-white transition-transform hover:-translate-y-0.5"
+            >
+              LINEで受け取る（無料）
+            </a>
+          </div>
+        </motion.div>
+
         {/* おすすめアイテム（PRとして正直に表示） */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
