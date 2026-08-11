@@ -6,7 +6,6 @@ import Image from 'next/image'
 import { Home } from 'lucide-react'
 import { Noto_Sans_JP } from 'next/font/google'
 import { diagramTypes } from '@/data/diagramTypes'
-import { questions } from '@/data/questions'
 import { Suspense } from 'react'
 import { characterSlugs } from '@/data/characterSlugs'
 
@@ -131,60 +130,14 @@ function GalleryContent() {
                     })()}
                   </p>
 
-                  {/* 詳細ボタン */}
+                  {/* 詳細ボタン：チラ見せページへ（完全な結果は診断した人だけの特典） */}
                   <div className="pt-3">
-                    <button
-                      onClick={() => {
-                        // 該当タイプの結果を生成するためのスコアを計算
-                        const typeCodeStr = String(typeCode)
-                        
-                        // 新しいdirection対応スコアリング
-                        const answers = Array.from({ length: 24 }, (_, i) => {
-                          const questionId = i + 1
-                          const question = questions.find(q => q.id === questionId)
-                          
-                          if (!question) return { questionId, score: 1 } // 質問が見つからない場合のデフォルト
-                          
-                          let targetScore: number = 0
-                          
-                          // 各軸に対して目標とする方向を決定
-                          if (questionId >= 1 && questionId <= 6) {
-                            // SG軸: Sタイプなら正方向、Gタイプなら負方向
-                            targetScore = typeCodeStr.startsWith('S') ? 3 : -3
-                          } else if (questionId >= 7 && questionId <= 12) {
-                            // RE軸: Rタイプなら正方向、Eタイプなら負方向
-                            targetScore = typeCodeStr.charAt(1) === 'R' ? 3 : -3
-                          } else if (questionId >= 13 && questionId <= 18) {
-                            // FC軸: Fタイプなら正方向、Cタイプなら負方向
-                            targetScore = typeCodeStr.charAt(2) === 'F' ? 3 : -3
-                          } else if (questionId >= 19 && questionId <= 24) {
-                            // QL軸: Qタイプなら正方向、Lタイプなら負方向
-                            targetScore = typeCodeStr.charAt(3) === 'Q' ? 3 : -3
-                          }
-                          
-                          // question.directionに基づいて実際の回答値を調整
-                          let answerScore: number
-                          if (question.direction === 'positive') {
-                            // positive質問の場合、目標スコアそのまま
-                            answerScore = targetScore
-                          } else {
-                            // negative質問の場合、目標スコアを逆転
-                            answerScore = -targetScore
-                          }
-                          
-                          return {
-                            questionId,
-                            score: answerScore
-                          }
-                        })
-                        
-                        localStorage.setItem('diet-quiz-answers', JSON.stringify(answers))
-                        window.location.href = '/result'
-                      }}
-                      className="w-full bg-teal-500 hover:bg-teal-600 text-white text-sm font-medium py-3 px-4 rounded-full transition-colors"
+                    <Link
+                      href={`/character/${characterSlugs[typeCodeStr]}`}
+                      className="block w-full bg-teal-500 hover:bg-teal-600 text-white text-sm font-medium py-3 px-4 rounded-full transition-colors text-center"
                     >
                       詳しく見る
-                    </button>
+                    </Link>
                   </div>
                   </div>
                 </div>
