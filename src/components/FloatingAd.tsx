@@ -66,7 +66,7 @@ export default function FloatingAd({
       `}
     >
       {/* 広告バナー本体 */}
-      <div 
+      <div
         onClick={handleClick}
         className={`
           relative bg-transparent rounded-full shadow-lg overflow-hidden
@@ -76,25 +76,6 @@ export default function FloatingAd({
         `}
         style={{ backgroundColor: 'transparent' }}
       >
-        {/* 閉じるボタン */}
-        {closable && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation()
-              handleClose()
-            }}
-            className="
-              absolute top-1 right-1 z-10
-              bg-black bg-opacity-50 rounded-full
-              p-1 hover:bg-opacity-70
-              transition-all duration-200
-            "
-            aria-label="広告を閉じる"
-          >
-            <X size={12} color="white" />
-          </button>
-        )}
-
         {/* 広告画像 */}
         <img
           src={imageUrl}
@@ -111,8 +92,27 @@ export default function FloatingAd({
             target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Ccircle cx='70' cy='70' r='65' fill='%23ff0000'/%3E%3Ctext x='70' y='80' text-anchor='middle' fill='white' font-size='14' font-weight='bold'%3EERROR%3C/text%3E%3C/svg%3E"
           }}
         />
-
       </div>
+
+      {/* 閉じるボタン：円の外・右上角にコンパクトに（画像に被らない） */}
+      {closable && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            handleClose()
+          }}
+          className="
+            absolute -top-1 -right-1 z-20
+            flex h-5 w-5 items-center justify-center
+            rounded-full bg-white text-gray-500 shadow-md
+            ring-1 ring-black/10 hover:text-gray-700 hover:scale-110
+            transition-all duration-200
+          "
+          aria-label="広告を閉じる"
+        >
+          <X size={12} strokeWidth={2.5} />
+        </button>
+      )}
 
     </div>
   )
