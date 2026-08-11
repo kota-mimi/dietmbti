@@ -144,27 +144,6 @@ export default function CharacterPageClient({ slug, typeCode, character }: Props
           </div>
         </motion.div>
 
-        {/* LINE健康バナー */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-8 flex justify-center"
-        >
-          <div className="w-full max-w-md">
-            <Image
-              src="/ads/line-health-banner.png"
-              alt="LINEで健康始めよう！"
-              width={400}
-              height={200}
-              className="w-full h-auto cursor-pointer hover:opacity-90 transition-opacity rounded-lg shadow-md"
-              onClick={() => {
-                window.open('https://lin.ee/S61FXhE', '_blank')
-              }}
-              quality={95}
-            />
-          </div>
-        </motion.div>
       </div>
     </div>
   )
