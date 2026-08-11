@@ -21,7 +21,8 @@ export function generateCharacterMetadata(slug: string): Metadata {
   const description = `${character.name}の詳細分析：${character.catchcopy} ${character.basicEcology} あなたに最適なダイエット方法を無料診断で発見しよう！`
   
   const url = `https://diet-type16.com/character/${slug}`
-  const imageUrl = `https://diet-type16.com/characters/${typeCode}_new3.png`
+  // タイプ別OGPシェアカード（1200×630・キャラ＋タイプ名＋キャッチ＋ロゴ）
+  const imageUrl = `https://diet-type16.com/ogp/${typeCode}.png`
 
   return {
     title,
