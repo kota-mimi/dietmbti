@@ -14,9 +14,13 @@
   --sky-600: #0284c7;
   --sky-700: #0369a1;
 
+  --accent-50: #fff7ed;
+  --accent-100: #ffedd5;
+  --accent-200: #fed7aa;
   --accent-300: #fdba74;
   --accent-400: #fb923c;
   --accent-500: #f97316;
+  --accent-600: #ea580c;
 
   --ink-900: #1a2b3c;
   --ink-700: #334155;
@@ -37,9 +41,13 @@
   --color-brand-600: var(--sky-600);
   --color-brand-700: var(--sky-700);
 
+  --color-accent-50: var(--accent-50);
+  --color-accent-100: var(--accent-100);
+  --color-accent-200: var(--accent-200);
   --color-accent-300: var(--accent-300);
   --color-accent-400: var(--accent-400);
   --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
 
   --color-ink-900: var(--ink-900);
   --color-ink-700: var(--ink-700);

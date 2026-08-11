@@ -9,6 +9,7 @@ import Image from 'next/image'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { Noto_Sans_JP, Zen_Maru_Gothic } from 'next/font/google'
 import { getTypeFromAnswers, calculateScore } from '@/lib/scoring'
+import { getPersonalReading } from '@/utils/personalize'
 import { diagramTypes } from '@/data/diagramTypes'
 import { Answer, Score } from '@/types'
 import A8AffiliateBanner from '@/components/A8AffiliateBanner'
@@ -177,6 +178,7 @@ export default function ResultPage() {
   }
 
   const typeData = diagramTypes[userType]
+  const personal = axisScores ? getPersonalReading(axisScores, userType) : null
   if (!typeData) {
     return (
       <div className={`min-h-screen bg-app-gradient flex items-center justify-center ${notoSansJP.className}`}>
@@ -333,6 +335,43 @@ export default function ResultPage() {
               <p className="text-center text-xs text-ink-500">
                 あなたのタイプは <span className="font-bold text-brand-600">{userType}</span> ―「{typeData.name}」。4つの軸のバランスで16タイプに分かれます。
               </p>
+            </motion.div>
+          )}
+
+          {/* あなただけのパーソナル診断セクション */}
+          {personal && (
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="space-y-4"
+            >
+              <div className="flex items-center justify-center gap-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-100 text-accent-500">
+                  <Sparkles className="h-5 w-5" />
+                </span>
+                <h2 className={`text-2xl font-bold text-ink-900 ${zenMaruGothic.className}`}>
+                  あなただけの診断
+                </h2>
+              </div>
+
+              <div className="mx-auto max-w-2xl rounded-2xl border border-accent-200 bg-gradient-to-br from-white to-accent-50/60 p-5 shadow-soft md:p-6">
+                <p className="text-[15px] leading-relaxed text-ink-800 md:text-base">
+                  {personal.headline}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-600">
+                  {personal.extremeness}
+                </p>
+                {personal.secondFace && (
+                  <div className="mt-4 flex gap-2 rounded-xl bg-accent-100/50 px-4 py-3">
+                    <span className="shrink-0 text-lg leading-none">🎭</span>
+                    <p className="text-sm leading-relaxed text-ink-700">
+                      <span className="font-bold text-accent-600">隠れた二面性：</span>
+                      {personal.secondFace}
+                    </p>
+                  </div>
+                )}
+              </div>
             </motion.div>
           )}
 
