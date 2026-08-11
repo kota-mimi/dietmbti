@@ -148,7 +148,7 @@ export default function ResultPage() {
 
     const characterSlug = characterSlugs[userType]
     const shareUrl = `${window.location.origin}/character/${characterSlug}`
-    const shareText = `私のダイエットタイプは「${typeData.name}」でした。\n${typeData.catchcopy}\n\nあなたはどのタイプ？\n${shareUrl}\n\n#ダイエットキャラ診断16`
+    const shareText = `【ダイエットタイプ診断】\n私は「${typeData.name}」タイプでした！\n${typeData.catchcopy}\n\nあなたの"痩せ方のクセ"は？無料でわかる👇\n${shareUrl}\n\n#ダイエットキャラ診断16`
 
     const shareUrls = {
       twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`,
@@ -470,8 +470,14 @@ export default function ResultPage() {
           className="mx-auto mt-8 max-w-md text-center"
         >
           <p className={`text-lg font-bold text-ink-900 ${zenMaruGothic.className}`}>この結果、当たってた？</p>
-          <p className="mt-1 text-sm text-ink-500">友だちにも診断をシェアしよう</p>
+          <p className="mt-1 text-sm text-ink-500">友だちに送って「どのタイプか」当ててもらおう</p>
           <div className="mt-4 flex flex-wrap justify-center gap-2.5">
+            <button
+              onClick={() => handleShare('line')}
+              className="rounded-full bg-[#06C755] px-6 py-2.5 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
+            >
+              LINEで送る
+            </button>
             <button
               onClick={() => handleShare('twitter')}
               className="rounded-full bg-ink-900 px-6 py-2.5 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
