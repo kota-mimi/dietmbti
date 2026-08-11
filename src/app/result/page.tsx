@@ -737,11 +737,6 @@ export default function ResultPage() {
             <A8AffiliateBanner />
           </motion.div>
 
-          {/* 免責事項 */}
-          <p className="mt-6 px-4 text-center text-[11px] leading-relaxed text-ink-300">
-            ※本診断はエンターテインメントを目的としたもので、医療・栄養上のアドバイスではありません。体調や食事・運動に不安がある場合は、医師・専門家にご相談ください。
-          </p>
-
         </motion.div>
         
       </div>
