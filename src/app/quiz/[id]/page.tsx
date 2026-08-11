@@ -27,6 +27,22 @@ export default function QuizPage() {
   // ページが変わるたびに、そのページの保存済み回答を復元する。
   // （戻る/進むで再訪したとき、以前の選択がハイライト表示されるようにする）
   useEffect(() => {
+    // 「診断を始める」等から ?restart=1 付きで来たときは、前回の回答を破棄して
+    // まっさらな状態で始める。途中の戻る/進む（パラメータ無し）では回答を維持する。
+    if (
+      pageNumber === 1 &&
+      typeof window !== 'undefined' &&
+      new URLSearchParams(window.location.search).get('restart') === '1'
+    ) {
+      localStorage.removeItem('diet-quiz-answers')
+      localStorage.removeItem('diet-quiz-result-type')
+      // パラメータを消して、この後の更新で再度クリアされないようにする
+      window.history.replaceState(null, '', '/quiz/1')
+      setSavedAnswers([])
+      setAnswers({})
+      return
+    }
+
     const saved = localStorage.getItem('diet-quiz-answers')
     const parsed: Answer[] = saved ? JSON.parse(saved) : []
     setSavedAnswers(parsed)

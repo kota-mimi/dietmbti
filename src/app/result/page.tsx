@@ -215,7 +215,8 @@ export default function ResultPage() {
 
   const handleRestart = () => {
     localStorage.removeItem('diet-quiz-answers')
-    router.push('/quiz/1')
+    localStorage.removeItem('diet-quiz-result-type')
+    router.push('/quiz/1?restart=1')
   }
 
   if (isLoading) {

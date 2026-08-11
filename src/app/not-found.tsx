@@ -95,7 +95,7 @@ export default function NotFound() {
         >
           {[
             { title: "ダイエット診断", desc: "16タイプの性格診断でダイエット方法を発見", link: "/" },
-            { title: "質問を見る", desc: "24問の質問でタイプを判定", link: "/quiz/1" },
+            { title: "質問を見る", desc: "24問の質問でタイプを判定", link: "/quiz/1?restart=1" },
             { title: "タイプ一覧", desc: "16種類のダイエットタイプを確認", link: "/" }
           ].map((item, index) => (
             <motion.div

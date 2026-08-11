@@ -132,7 +132,7 @@ export default function CharacterPageClient({ slug, typeCode, character }: Props
               診断してみよう！
             </p>
             
-            <Link href="/quiz/1">
+            <Link href="/quiz/1?restart=1">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

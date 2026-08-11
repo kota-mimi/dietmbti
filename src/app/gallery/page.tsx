@@ -153,7 +153,7 @@ function GalleryContent() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center"
         >
-          <Link href="/quiz/1">
+          <Link href="/quiz/1?restart=1">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

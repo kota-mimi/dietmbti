@@ -62,7 +62,7 @@ export default function HomeContent() {
           </h2>
 
           {/* CTA */}
-          <Link href="/quiz/1">
+          <Link href="/quiz/1?restart=1">
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
