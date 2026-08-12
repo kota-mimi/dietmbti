@@ -9,7 +9,7 @@ export const characterSlugs: Record<string, string> = {
   SECQ: 'night-personality',     // 昼夜二重人格
   SECL: 'knowledge-collector',   // 脳内アスリート
   GRFQ: 'morning-king',         // 朝活マウント王
-  GRFL: 'lunch-guardian',       // 女子会ランチの守護神
+  GRFL: 'lunch-guardian',       // 女子会の守護神
   GRCQ: 'diet-fighter',         // 減量ファイター
   GRCL: 'diet-manager',         // ダイエット部の部長
   GEFQ: 'trend-surfer',         // トレンドサーファー

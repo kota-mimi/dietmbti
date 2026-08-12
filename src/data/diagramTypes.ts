@@ -263,7 +263,7 @@ export const diagramTypes: DiagramTypes = {
     }
   },
   GRFL: {
-    name: '女子会ランチの守護神',
+    name: '女子会の守護神',
     emoji: '🥗',
     catchcopy: 'ここ野菜おいしいよ！の店選びプロ。',
     relatable: [
