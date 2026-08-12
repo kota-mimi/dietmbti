@@ -118,12 +118,10 @@ export default function ResultPage() {
       }
     }
 
-    // タイプの決定：保存済みタイプ優先、なければ回答から計算
-    const savedType = localStorage.getItem('diet-quiz-result-type')
+    // タイプの決定：24問の回答から計算する。
+    // 回答が無ければトップへ戻す。
     let typeCode = ''
-    if (savedType && diagramTypes[savedType]) {
-      typeCode = savedType
-    } else if (answers) {
+    if (answers) {
       typeCode = getTypeFromAnswers(answers)
     } else {
       router.push('/')
