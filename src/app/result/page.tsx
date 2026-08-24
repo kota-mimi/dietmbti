@@ -508,15 +508,6 @@ export default function ResultPage() {
           </div>
         </motion.div>
 
-        <div className="mx-auto mt-12 max-w-2xl">
-          <ResultLineCta
-            typeCode={userType}
-            typeName={typeData.name}
-            placement="result_footer"
-            compact
-          />
-        </div>
-
         {/* おすすめアイテム（PRとして正直に表示） */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { ArrowRight, Camera, MessageCircle, Sparkles } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 
@@ -28,19 +27,15 @@ const TYPE_MESSAGES: Record<string, string> = {
 interface ResultLineCtaProps {
   typeCode: string
   typeName: string
-  placement?: 'result_primary' | 'result_footer'
-  compact?: boolean
 }
 
 export default function ResultLineCta({
   typeCode,
   typeName,
-  placement = 'result_primary',
-  compact = false,
 }: ResultLineCtaProps) {
   const handleClick = () => {
     trackEvent('line_click', {
-      placement,
+      placement: 'result_primary',
       character_type: typeCode,
       character_name: typeName,
     })
@@ -48,10 +43,8 @@ export default function ResultLineCta({
 
   return (
     <section
-      className={`relative mx-auto max-w-2xl overflow-hidden rounded-3xl border border-[#06C755]/25 bg-gradient-to-br from-white via-emerald-50 to-sky-50 shadow-card ${
-        compact ? 'p-5 md:p-6' : 'p-6 md:p-8'
-      }`}
-      aria-labelledby={`line-cta-${placement}`}
+      className="relative mx-auto max-w-2xl overflow-hidden rounded-3xl border border-[#06C755]/25 bg-gradient-to-br from-white via-emerald-50 to-sky-50 p-6 shadow-card md:p-8"
+      aria-labelledby="line-cta-result-primary"
     >
       <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#06C755]/10 blur-2xl" />
       <div className="relative flex flex-col items-center text-center">
@@ -61,27 +54,21 @@ export default function ResultLineCta({
         </span>
 
         <div className="mt-4 flex items-center gap-3">
-          <Image
-            src="/line-ad.png"
-            alt="AI食事管理サポートのヘルシーくん"
-            width={80}
-            height={80}
-            className="h-16 w-16 rounded-full object-cover shadow-soft md:h-20 md:w-20"
-          />
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#06C755] text-white shadow-soft md:h-16 md:w-16" aria-hidden="true">
+            <MessageCircle className="h-7 w-7 fill-current md:h-8 md:w-8" />
+          </span>
           <div className="text-left">
             <p className="text-xs font-bold tracking-wider text-emerald-700">{typeName}のあなたへ</p>
-            <h2 id={`line-cta-${placement}`} className="mt-1 text-xl font-bold leading-snug text-ink-900 md:text-2xl">
+            <h2 id="line-cta-result-primary" className="mt-1 text-xl font-bold leading-snug text-ink-900 md:text-2xl">
               あなた専用の食事サポートを
               <br className="hidden sm:block" />LINEで始めませんか？
             </h2>
           </div>
         </div>
 
-        {!compact && (
-          <p className="mt-4 max-w-lg text-sm font-medium leading-relaxed text-ink-700 md:text-base">
-            {TYPE_MESSAGES[typeCode] ?? 'あなたのタイプに合った食事管理を、無理なく続けよう。'}
-          </p>
-        )}
+        <p className="mt-4 max-w-lg text-sm font-medium leading-relaxed text-ink-700 md:text-base">
+          {TYPE_MESSAGES[typeCode] ?? 'あなたのタイプに合った食事管理を、無理なく続けよう。'}
+        </p>
 
         <div className="mt-5 grid w-full max-w-lg grid-cols-1 gap-2 text-left text-sm text-ink-700 sm:grid-cols-3">
           <span className="flex items-center justify-center gap-2 rounded-xl bg-white/80 px-3 py-2.5"><Camera className="h-4 w-4 text-emerald-600" />写真を送るだけ</span>
