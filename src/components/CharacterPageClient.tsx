@@ -3,9 +3,9 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Home, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Noto_Sans_JP, Zen_Maru_Gothic } from 'next/font/google'
-import { diagramTypes } from '@/data/diagramTypes'
+import { DiagramType } from '@/types'
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
@@ -19,33 +19,27 @@ const zenMaruGothic = Zen_Maru_Gothic({
 })
 
 interface Props {
-  slug: string
   typeCode: string
-  character: any
+  character: DiagramType
 }
 
-export default function CharacterPageClient({ slug, typeCode, character }: Props) {
+export default function CharacterPageClient({ typeCode, character }: Props) {
   // カードの背景色とテキスト色を決定
   let cardBgColor = 'bg-blue-200/50'
   let textColor = 'text-blue-600'
-  let accentColor = 'blue'
   
   if (typeCode.startsWith('SR')) {
     cardBgColor = 'bg-green-200/50'
     textColor = 'text-green-600'
-    accentColor = 'green'
   } else if (typeCode.startsWith('SE')) {
     cardBgColor = 'bg-purple-200/50'
     textColor = 'text-purple-600'
-    accentColor = 'purple'
   } else if (typeCode.startsWith('GR')) {
     cardBgColor = 'bg-red-400/60'
     textColor = 'text-red-600'
-    accentColor = 'red'
   } else if (typeCode.startsWith('GE')) {
     cardBgColor = 'bg-blue-200/50'
     textColor = 'text-blue-600'
-    accentColor = 'blue'
   }
 
   return (

@@ -69,18 +69,19 @@ export default function A8AffiliateBanner() {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setIsMounted(true)
-    
     // 初期表示をランダムに設定
     const initialRandomIndex = Math.floor(Math.random() * affiliateAds.length)
-    setCurrentAdIndex(initialRandomIndex)
     
     // 画面サイズ判定
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768)
     }
     
-    checkScreenSize()
+    queueMicrotask(() => {
+      setIsMounted(true)
+      setCurrentAdIndex(initialRandomIndex)
+      checkScreenSize()
+    })
     window.addEventListener('resize', checkScreenSize)
 
     // ローテーション機能（15秒ごとに順次切り替え）

@@ -14,7 +14,7 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: "ダイエットタイプ診断｜あなたの痩せ方、見つかる",
-  description: "16タイプのダイエット性格診断で、あなたに最適なダイエット方法を発見。24問・約3分で完了。科学的根拠に基づいた継続可能なアプローチをご提案します。",
+  description: "16タイプのダイエット性格診断で、あなたに合った続けやすい方法を発見。24問・約3分で完了。性格傾向に合わせたアプローチをご提案します。",
   keywords: "ダイエット,診断,MBTI,性格,痩せる,減量,健康,フィットネス",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://diet-type16.com'),
   authors: [{ name: "ダイエットタイプ診断" }],

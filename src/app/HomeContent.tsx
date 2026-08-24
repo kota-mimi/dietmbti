@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Noto_Sans_JP, Zen_Maru_Gothic } from 'next/font/google'
 import { Sparkles, ArrowRight, Clock, Users } from 'lucide-react'
 import CharacterMarquee from '@/components/CharacterMarquee'
+import { trackEvent } from '@/lib/analytics'
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
@@ -62,7 +63,10 @@ export default function HomeContent() {
           </h2>
 
           {/* CTA */}
-          <Link href="/quiz/1?restart=1">
+          <Link
+            href="/quiz/1?restart=1"
+            onClick={() => trackEvent('quiz_start', { placement: 'home_hero' })}
+          >
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}

@@ -1,7 +1,10 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import React, { useState } from 'react'
 import { X } from 'lucide-react'
+import { trackEvent } from '@/lib/analytics'
 
 interface FloatingAdProps {
   imageUrl?: string
@@ -18,28 +21,8 @@ export default function FloatingAd({
   onClose,
   closable = true
 }: FloatingAdProps) {
+  const pathname = usePathname()
   const [isVisible, setIsVisible] = useState(true)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  // サーバーサイドレンダリング時は非表示で表示する（ハイドレーション後に表示）
-  if (!isMounted) {
-    return (
-      <div style={{ display: 'none' }}>
-        <img src={imageUrl} alt={altText} style={{ display: 'none' }} />
-      </div>
-    );
-  }
 
   const handleClose = () => {
     setIsVisible(false)
@@ -48,11 +31,13 @@ export default function FloatingAd({
 
   const handleClick = () => {
     if (linkUrl && linkUrl !== "#") {
+      trackEvent('line_click', { placement: 'floating_ad', page_path: pathname })
       window.open(linkUrl, '_blank', 'noopener,noreferrer')
     }
   }
 
-  if (!isVisible) {
+  // 回答中は診断への集中を優先する。結果ページには専用のLINE導線があるため重複表示しない。
+  if (!isVisible || pathname.startsWith('/quiz/') || pathname === '/result') {
     return null;
   }
 
@@ -77,20 +62,12 @@ export default function FloatingAd({
         style={{ backgroundColor: 'transparent' }}
       >
         {/* 広告画像 */}
-        <img
+        <Image
           src={imageUrl}
           alt={altText}
-          className="w-full h-full object-cover rounded-full"
-          style={{
-            display: 'block',
-            position: 'relative',
-            zIndex: 10
-          }}
-          onError={(e) => {
-            // 画像が読み込めない場合のフォールバック
-            const target = e.target as HTMLImageElement
-            target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Ccircle cx='70' cy='70' r='65' fill='%23ff0000'/%3E%3Ctext x='70' y='80' text-anchor='middle' fill='white' font-size='14' font-weight='bold'%3EERROR%3C/text%3E%3C/svg%3E"
-          }}
+          width={100}
+          height={100}
+          className="relative z-10 h-full w-full rounded-full object-cover"
         />
       </div>
 

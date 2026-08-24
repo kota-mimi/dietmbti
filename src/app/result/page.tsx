@@ -11,6 +11,8 @@ import { diagramTypes } from '@/data/diagramTypes'
 import { Answer, Score } from '@/types'
 import A8AffiliateBanner from '@/components/A8AffiliateBanner'
 import { characterSlugs } from '@/data/characterSlugs'
+import ResultLineCta from '@/components/ResultLineCta'
+import { trackEvent } from '@/lib/analytics'
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
@@ -133,11 +135,14 @@ export default function ResultPage() {
     }
     setUserType(typeCode)
     setIsLoading(false)
+    trackEvent('quiz_complete', { character_type: typeCode })
   }, [router])
 
   const handleShare = (platform: string) => {
     const typeData = diagramTypes[userType]
     if (!typeData) return
+
+    trackEvent('result_share', { platform, character_type: userType })
 
     if (platform === 'instagram') {
       handleDownloadImage()
@@ -207,6 +212,7 @@ export default function ResultPage() {
     if (!typeData) return
     const characterSlug = characterSlugs[userType]
     const shareUrl = `${window.location.origin}/character/${characterSlug}`
+    trackEvent('result_share', { platform: 'copy_link', character_type: userType })
     navigator.clipboard.writeText(shareUrl)
     alert('リンクをコピーしました。')
   }
@@ -407,6 +413,10 @@ export default function ResultPage() {
               </div>
             </Section>
 
+            <Section>
+              <ResultLineCta typeCode={userType} typeName={typeData.name} />
+            </Section>
+
             {/* 相性チェック */}
             <Section className="space-y-8">
               <SectionHead eyebrow="人間関係" title="相性チェック" tone="neutral" />
@@ -497,6 +507,15 @@ export default function ResultPage() {
             </button>
           </div>
         </motion.div>
+
+        <div className="mx-auto mt-12 max-w-2xl">
+          <ResultLineCta
+            typeCode={userType}
+            typeName={typeData.name}
+            placement="result_footer"
+            compact
+          />
+        </div>
 
         {/* おすすめアイテム（PRとして正直に表示） */}
         <motion.div

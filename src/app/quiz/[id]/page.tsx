@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, Check } from 'lucide-react'
 import { Noto_Sans_JP } from 'next/font/google'
 import { getQuestionGroupByPage, getTotalPages } from '@/lib/questionGroups'
 import { Answer } from '@/types'
+import { trackEvent } from '@/lib/analytics'
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
@@ -38,15 +39,15 @@ export default function QuizPage() {
       localStorage.removeItem('diet-quiz-result-type')
       // パラメータを消して、この後の更新で再度クリアされないようにする
       window.history.replaceState(null, '', '/quiz/1')
-      setSavedAnswers([])
-      setAnswers({})
+      queueMicrotask(() => {
+        setSavedAnswers([])
+        setAnswers({})
+      })
       return
     }
 
     const saved = localStorage.getItem('diet-quiz-answers')
     const parsed: Answer[] = saved ? JSON.parse(saved) : []
-    setSavedAnswers(parsed)
-
     const group = getQuestionGroupByPage(pageNumber)
     const restored: { [key: number]: number } = {}
     if (group) {
@@ -56,7 +57,11 @@ export default function QuizPage() {
         }
       })
     }
-    setAnswers(restored)
+    queueMicrotask(() => {
+      setSavedAnswers(parsed)
+      setAnswers(restored)
+    })
+    trackEvent('quiz_page_view', { quiz_page: pageNumber })
   }, [pageNumber])
   
   useEffect(() => {
@@ -98,12 +103,16 @@ export default function QuizPage() {
     }
   }
 
-  const handleNext = useCallback(() => {
+  const handleNext = () => {
     // 全ての質問に回答されているかチェック
     const allAnswered = questionGroup.every(q => answers[q.id] !== undefined)
     if (!allAnswered) return
 
     setIsLoading(true)
+    trackEvent('quiz_page_complete', {
+      quiz_page: pageNumber,
+      answered_questions: questionGroup.length,
+    })
 
     // 回答を保存
     const newAnswers = questionGroup.map(q => ({
@@ -125,41 +134,15 @@ export default function QuizPage() {
         router.push('/result')
       }
     }, 500)
-  }, [answers, questionGroup, savedAnswers, pageNumber, totalPages, router])
+  }
 
-  const handleBack = useCallback(() => {
+  const handleBack = () => {
     if (pageNumber > 1) {
       router.push(`/quiz/${pageNumber - 1}`)
     } else {
       router.push('/')
     }
-  }, [pageNumber, router])
-
-  // キーボードショートカット
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      const key = e.key
-
-      switch (key) {
-        case 'Enter':
-          // Enterキーで次へ
-          const allAnswered = questionGroup.every(q => answers[q.id] !== undefined)
-          if (allAnswered && !isLoading) {
-            handleNext()
-          }
-          return
-        case 'Backspace':
-          // Backspaceで戻る
-          handleBack()
-          return
-        default:
-          return
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyPress)
-    return () => window.removeEventListener('keydown', handleKeyPress)
-  }, [answers, questionGroup, isLoading])
+  }
 
   if (!questionGroup) {
     return <div>ページが見つかりません</div>

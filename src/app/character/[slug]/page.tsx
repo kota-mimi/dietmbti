@@ -36,5 +36,5 @@ export default async function CharacterPage({ params }: Props) {
     notFound()
   }
 
-  return <CharacterPageClient slug={slug} typeCode={typeCode} character={character} />
+  return <CharacterPageClient typeCode={typeCode} character={character} />
 }

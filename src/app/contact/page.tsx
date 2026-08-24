@@ -1,4 +1,5 @@
 import { Noto_Sans_JP } from 'next/font/google'
+import Link from 'next/link'
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
@@ -37,12 +38,12 @@ export default function ContactPage() {
               </div>
               
               <div className="mt-8">
-                <a 
+                <Link
                   href="/"
                   className="inline-block bg-teal-500 text-white px-8 py-3 rounded-full hover:bg-teal-600 transition-colors font-bold"
                 >
                   ホームに戻る
-                </a>
+                </Link>
               </div>
             </section>
 
