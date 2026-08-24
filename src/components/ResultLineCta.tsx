@@ -43,11 +43,35 @@ export default function ResultLineCta({
 
   return (
     <section
-      className="relative mx-auto max-w-2xl overflow-hidden rounded-2xl border border-[#06C755]/20 bg-gradient-to-br from-white via-emerald-50/70 to-sky-50 p-5 shadow-soft md:p-6"
+      className="relative mx-auto max-w-2xl overflow-hidden rounded-xl border border-[#06C755]/20 bg-emerald-50/70 p-3 shadow-soft sm:rounded-2xl sm:bg-gradient-to-br sm:from-white sm:via-emerald-50/70 sm:to-sky-50 sm:p-6"
       aria-labelledby="line-cta-result-primary"
     >
-      <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#06C755]/10 blur-2xl" />
-      <div className="relative flex flex-col items-center text-center">
+      {/* スマホ：診断本文を邪魔しない最小限の横長バナー */}
+      <div className="flex items-center gap-2.5 sm:hidden">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#06C755] text-white" aria-hidden="true">
+          <MessageCircle className="h-4.5 w-4.5 fill-current" />
+        </span>
+        <div className="min-w-0 flex-1 text-left">
+          <p className="truncate text-[10px] font-bold text-emerald-700">{typeName}向け</p>
+          <h2 id="line-cta-result-primary" className="text-xs font-bold leading-tight text-ink-900">
+            LINEで食事管理を続ける
+          </h2>
+        </div>
+        <a
+          href={LINE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleClick}
+          className="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#06C755] px-3 py-2 text-[11px] font-bold text-white"
+        >
+          無料で試す
+          <ArrowRight className="h-3 w-3" />
+        </a>
+      </div>
+
+      {/* タブレット・PC：価値を短く説明 */}
+      <div className="pointer-events-none absolute -right-16 -top-16 hidden h-40 w-40 rounded-full bg-[#06C755]/10 blur-2xl sm:block" />
+      <div className="relative hidden flex-col items-center text-center sm:flex">
         <span className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wide text-emerald-700">
           <Sparkles className="h-3.5 w-3.5" />
           診断の次は、今日の一食から
@@ -59,7 +83,7 @@ export default function ResultLineCta({
           </span>
           <div className="text-left">
             <p className="text-[11px] font-bold text-emerald-700">{typeName}のあなたへ</p>
-            <h2 id="line-cta-result-primary" className="mt-0.5 text-base font-bold leading-snug text-ink-900 md:text-lg">
+            <h2 className="mt-0.5 text-base font-bold leading-snug text-ink-900 md:text-lg">
               LINEで食事管理を続けてみる？
             </h2>
           </div>
