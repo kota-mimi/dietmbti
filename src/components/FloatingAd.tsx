@@ -44,19 +44,19 @@ export default function FloatingAd({
   return (
     <div
       className={`
-        fixed bottom-4 right-4 z-50 
+        fixed bottom-3 right-3 z-40 sm:bottom-5 sm:right-5
         transition-all duration-300 ease-in-out
         opacity-100
-        w-[100px] h-[100px]
+        h-[68px] w-[68px] sm:h-[84px] sm:w-[84px]
       `}
     >
       {/* 広告バナー本体 */}
       <div
         onClick={handleClick}
         className={`
-          relative bg-transparent rounded-full shadow-lg overflow-hidden
+          relative overflow-hidden rounded-full border-2 border-[#211b18] bg-white shadow-[4px_4px_0_#211b18]
           ${linkUrl && linkUrl !== "#" ? 'cursor-pointer' : 'cursor-default'}
-          transform hover:scale-125 transition-transform duration-300 ease-out
+          transform transition-transform duration-200 ease-out hover:-translate-y-0.5 hover:scale-105
           w-full h-full
         `}
         style={{ backgroundColor: 'transparent' }}
@@ -65,13 +65,13 @@ export default function FloatingAd({
         <Image
           src={imageUrl}
           alt={altText}
-          width={100}
-          height={100}
+          width={84}
+          height={84}
           className="relative z-10 h-full w-full rounded-full object-cover"
         />
       </div>
 
-      {/* 閉じるボタン：円の外・右上角にコンパクトに（画像に被らない） */}
+      {/* 閉じるボタンを広告本体に重ね、ひとつのUIとして見せる。 */}
       {closable && (
         <button
           onClick={(e) => {
@@ -79,15 +79,15 @@ export default function FloatingAd({
             handleClose()
           }}
           className="
-            absolute -top-1 -right-1 z-20
-            flex h-5 w-5 items-center justify-center
-            rounded-full bg-white text-gray-500 shadow-md
-            ring-1 ring-black/10 hover:text-gray-700 hover:scale-110
+            absolute -right-1 -top-1 z-20
+            flex h-6 w-6 items-center justify-center
+            rounded-full border-2 border-[#211b18] bg-[#fff8ee] text-[#211b18]
+            shadow-[2px_2px_0_#211b18] hover:scale-105
             transition-all duration-200
           "
           aria-label="広告を閉じる"
         >
-          <X size={12} strokeWidth={2.5} />
+          <X size={13} strokeWidth={3} />
         </button>
       )}
 
