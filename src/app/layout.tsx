@@ -89,7 +89,7 @@ export default function RootLayout({
         <Footer />
         <Analytics />
         <FloatingAd 
-          imageUrl="/line-ad.png"
+          imageUrl="/line-ad-v2.png"
           linkUrl="https://lin.ee/S61FXhE"
           altText="LINE公式アカウント"
           closable={true}

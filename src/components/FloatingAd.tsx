@@ -15,7 +15,7 @@ interface FloatingAdProps {
 }
 
 export default function FloatingAd({
-  imageUrl = "/line-ad.png",
+  imageUrl = "/line-ad-v2.png",
   linkUrl = "#",
   altText = "広告バナー",
   onClose,
@@ -47,7 +47,7 @@ export default function FloatingAd({
         fixed bottom-3 right-3 z-40 sm:bottom-5 sm:right-5
         transition-all duration-300 ease-in-out
         opacity-100
-        h-[68px] w-[68px] sm:h-[84px] sm:w-[84px]
+        h-[100px] w-[100px]
       `}
     >
       {/* 広告バナー本体 */}
@@ -65,8 +65,8 @@ export default function FloatingAd({
         <Image
           src={imageUrl}
           alt={altText}
-          width={84}
-          height={84}
+          width={100}
+          height={100}
           className="relative z-10 h-full w-full rounded-full object-cover"
         />
       </div>
