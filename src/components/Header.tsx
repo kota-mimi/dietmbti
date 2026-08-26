@@ -28,7 +28,7 @@ export default function Header() {
   ]
 
   return (
-    <header className={`sticky top-0 z-50 border-b-2 border-[#211b18] bg-[#fff8ee]/95 backdrop-blur ${notoSansJP.className}`}>
+    <header className={`sticky top-0 z-50 border-b-2 border-[#211b18] bg-[#fff8ee] ${notoSansJP.className}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -69,51 +69,44 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Full-screen Menu */}
       {isMenuOpen && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-          onClick={() => setIsMenuOpen(false)}
-        />
-      )}
-
-      {/* Mobile Slide-out Menu */}
-      <motion.div
-        initial={{ x: '100%' }}
-        animate={{ x: isMenuOpen ? 0 : '100%' }}
-        transition={{ type: 'tween', duration: 0.3 }}
-        className="fixed top-0 right-0 z-50 h-full w-80 border-l-2 border-[#211b18] bg-[#fff8ee] shadow-[-6px_0_0_#211b18] md:hidden"
-      >
-        {/* Close Button */}
-        <div className="flex justify-end p-4">
+          transition={{ duration: 0.22 }}
+          className="fixed inset-0 z-[9999] flex min-h-dvh flex-col items-center justify-center bg-[#17324d] px-6 md:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="サイトメニュー"
+        >
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="rounded-full border-2 border-[#211b18] bg-white p-2 shadow-[2px_2px_0_#211b18]"
+            className="absolute right-5 top-5 rounded-full border-2 border-white bg-[#fff8ee] p-3 shadow-[3px_3px_0_#0d1e2e]"
             aria-label="メニューを閉じる"
           >
-            <X className="w-6 h-6 text-gray-700" />
+            <X className="h-6 w-6 text-[#211b18]" />
           </button>
-        </div>
-        
-        <div className="p-6">
-          <nav className="space-y-6">
+
+          <nav className="w-full max-w-sm space-y-5">
             {menuItems.map((item) => (
               <Link
                 key={item.key}
                 href={item.href}
-                className="block rounded-2xl border-2 border-[#211b18] bg-white px-5 py-3 text-lg font-black text-[#211b18] shadow-[3px_3px_0_#211b18] transition hover:-translate-y-0.5"
+                className="block rounded-full border-2 border-[#211b18] bg-[#fff8ee] px-7 py-4 text-xl font-black text-[#211b18] shadow-[5px_5px_0_#0d1e2e] transition hover:-translate-y-0.5"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-        </div>
-      </motion.div>
+
+          <div className={`absolute bottom-10 text-xl font-black text-white ${zenMaruGothic.className}`}>
+            <span className="text-[#7dd3fc]">ダイエットキャラ</span>診断<span className="text-[#ffd166]">16</span>
+          </div>
+        </motion.div>
+      )}
     </header>
   )
 }
