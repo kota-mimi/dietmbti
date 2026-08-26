@@ -31,9 +31,9 @@ export default function CharacterMarquee({
   const duplicatedTypes = [...characterTypes, ...characterTypes, ...characterTypes]
 
   return (
-    <div className="overflow-hidden whitespace-nowrap">
+    <div className="overflow-hidden py-2 whitespace-nowrap">
       <motion.div
-        className="flex gap-3 md:gap-6"
+        className="flex gap-4 md:gap-6"
         animate={{
           x: direction === 'right' ? ['0%', '-33.33%'] : ['-33.33%', '0%']
         }}
@@ -46,7 +46,7 @@ export default function CharacterMarquee({
         {duplicatedTypes.map((type, index) => (
           <div
             key={`${type}-${index}`}
-            className="flex-shrink-0 w-16 h-16 md:w-24 md:h-24"
+            className={`h-20 w-20 flex-shrink-0 overflow-hidden rounded-[22px] border-2 border-[#211b18] bg-white p-1 shadow-[4px_4px_0_#211b18] md:h-28 md:w-28 ${index % 2 ? 'rotate-2' : '-rotate-2'}`}
           >
             <Image
               src={`/characters/${type === 'SRFQ' ? 'SRFQ_gallery.png' : 
@@ -69,7 +69,7 @@ export default function CharacterMarquee({
               alt={`${type} character`}
               width={96}
               height={96}
-              className="w-full h-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+              className="h-full w-full object-contain transition-transform duration-300 hover:scale-105"
               quality={85}
             />
           </div>

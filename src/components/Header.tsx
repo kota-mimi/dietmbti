@@ -28,14 +28,14 @@ export default function Header() {
   ]
 
   return (
-    <header className={`sticky top-0 z-50 bg-white border-b border-gray-100 ${notoSansJP.className}`}>
+    <header className={`sticky top-0 z-50 border-b-2 border-[#211b18] bg-[#fff8ee]/95 backdrop-blur ${notoSansJP.className}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center">
-              <div className={`text-2xl font-black text-gray-800 ${zenMaruGothic.className} tracking-tight`}>
-                ダイエットキャラ診断16
+              <div className={`text-xl font-black text-[#211b18] sm:text-2xl ${zenMaruGothic.className} tracking-tight`}>
+                <span className="text-[#0284c7]">ダイエットキャラ</span>診断<span className="text-[#f97316]">16</span>
               </div>
             </div>
           </Link>
@@ -46,7 +46,7 @@ export default function Header() {
               <Link
                 key={item.key}
                 href={item.href}
-                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                className="font-black text-[#514741] transition-colors hover:text-[#0284c7]"
               >
                 {item.label}
               </Link>
@@ -55,8 +55,10 @@ export default function Header() {
 
           {/* Mobile Hamburger Menu */}
           <button
-            className="md:hidden p-2"
+            className="rounded-full border-2 border-[#211b18] bg-white p-2 shadow-[2px_2px_0_#211b18] md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
               <X className="w-6 h-6 text-gray-700" />
@@ -84,13 +86,14 @@ export default function Header() {
         initial={{ x: '100%' }}
         animate={{ x: isMenuOpen ? 0 : '100%' }}
         transition={{ type: 'tween', duration: 0.3 }}
-        className="fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden"
+        className="fixed top-0 right-0 z-50 h-full w-80 border-l-2 border-[#211b18] bg-[#fff8ee] shadow-[-6px_0_0_#211b18] md:hidden"
       >
         {/* Close Button */}
         <div className="flex justify-end p-4">
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="p-2"
+            className="rounded-full border-2 border-[#211b18] bg-white p-2 shadow-[2px_2px_0_#211b18]"
+            aria-label="メニューを閉じる"
           >
             <X className="w-6 h-6 text-gray-700" />
           </button>
@@ -102,7 +105,7 @@ export default function Header() {
               <Link
                 key={item.key}
                 href={item.href}
-                className="block text-xl font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                className="block rounded-2xl border-2 border-[#211b18] bg-white px-5 py-3 text-lg font-black text-[#211b18] shadow-[3px_3px_0_#211b18] transition hover:-translate-y-0.5"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}

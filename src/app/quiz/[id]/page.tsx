@@ -153,10 +153,10 @@ export default function QuizPage() {
   return (
     <div className={`min-h-screen bg-app-gradient ${notoSansJP.className}`}>
       {/* プログレスバー（固定） */}
-      <div className="sticky top-0 z-20 w-full bg-white/70 backdrop-blur">
-        <div className="h-1.5 w-full bg-brand-100">
+      <div className="sticky top-0 z-20 w-full border-b-2 border-[#211b18] bg-white">
+        <div className="h-2 w-full bg-[#e0f2fe]" role="progressbar" aria-label="診断の進捗" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress)}>
           <motion.div
-            className="h-full rounded-r-full bg-gradient-to-r from-brand-400 to-brand-600"
+            className="h-full rounded-r-full bg-[#0ea5e9]"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
@@ -171,13 +171,14 @@ export default function QuizPage() {
             onClick={handleBack}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-200 bg-white/80 text-ink-700 shadow-soft backdrop-blur transition-all hover:bg-white"
+            className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#211b18] bg-white text-ink-700 shadow-[2px_2px_0_#211b18] transition-all hover:-translate-y-0.5"
+            aria-label="前の画面に戻る"
           >
             <ArrowLeft className="h-5 w-5" />
           </motion.button>
 
-          <span className="rounded-full bg-white/70 px-4 py-1.5 text-sm font-semibold text-brand-700 shadow-soft backdrop-blur">
-            {pageNumber} <span className="text-ink-300">/</span> {totalPages}
+          <span className="rounded-full border-2 border-[#211b18] bg-[#ffd166] px-4 py-1.5 text-sm font-black text-[#211b18] shadow-[2px_2px_0_#211b18]">
+            ページ {pageNumber} <span className="opacity-50">/</span> {totalPages}
           </span>
         </div>
 
@@ -191,12 +192,12 @@ export default function QuizPage() {
             className="max-w-4xl mx-auto space-y-8"
           >
             {/* 質問リスト */}
-            <div className="card-surface space-y-8 rounded-3xl p-6 md:p-10">
+            <div className="card-surface space-y-8 rounded-[28px] p-5 md:p-10">
               {questionGroup.map((question, index) => (
                 <div key={question.id} id={`question-${question.id}`} className="space-y-4 scroll-mt-24">
                   <div className="flex items-start gap-3">
-                    <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">
-                      {index + 1}
+                    <span className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border-2 border-[#211b18] bg-[#ffd166] text-xs font-black text-[#211b18]">
+                      Q{(pageNumber - 1) * groupSize + index + 1}
                     </span>
                     <h3 className="text-base md:text-lg font-semibold text-ink-900 text-left leading-relaxed">
                       {question.text}
@@ -227,6 +228,8 @@ export default function QuizPage() {
                                 className={`${size} flex items-center justify-center rounded-full border-2 transition-all duration-300 ${ring} ${
                                   isSelected ? `${fill} shadow-glow` : 'bg-white'
                                 }`}
+                                aria-label={`${question.text}：${score === 3 ? 'とてもそう思う' : score === 1 ? 'ややそう思う' : score === -1 ? 'ややそう思わない' : 'まったくそう思わない'}`}
+                                aria-pressed={isSelected}
                               >
                                 {isSelected && <Check className="h-5 w-5 text-white" strokeWidth={3} />}
                               </motion.button>
@@ -263,6 +266,8 @@ export default function QuizPage() {
                                 className={`${size} flex items-center justify-center rounded-full border-2 transition-all duration-300 ${ring} ${
                                   isSelected ? `${fill} shadow-glow` : 'bg-white hover:bg-brand-50'
                                 }`}
+                                aria-label={`${question.text}：${score === 3 ? 'とてもそう思う' : score === 1 ? 'ややそう思う' : score === -1 ? 'ややそう思わない' : 'まったくそう思わない'}`}
+                                aria-pressed={isSelected}
                               >
                                 {isSelected && <Check className="h-6 w-6 text-white" strokeWidth={3} />}
                               </motion.button>
@@ -279,14 +284,14 @@ export default function QuizPage() {
                   </div>
 
                   {index < questionGroup.length - 1 && (
-                    <hr className="my-6 border-brand-100" />
+                    <hr className="my-6 border-[#211b18]/20" />
                   )}
                 </div>
               ))}
             </div>
 
             {/* 進捗インジケーター */}
-            <div className="card-surface rounded-2xl p-5 text-center">
+            <div className="card-surface rounded-[24px] p-5 text-center">
               <div className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-ink-500">
                 <span className="text-brand-600 font-bold">{Object.keys(answers).length}</span>
                 <span className="text-ink-300">/</span>

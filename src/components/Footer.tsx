@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 py-8 mt-16">
+    <footer className="mt-16 border-t-2 border-[#211b18] bg-[#17324d] py-10 text-white">
       {/* LINEスタンプ宣伝バナー - 将来的に使用する場合は以下のコメントアウトを解除 */}
       {/*
       <div className="bg-green-500 text-white py-4 px-4 mb-6 mx-4 rounded-lg">
@@ -31,28 +31,30 @@ export default function Footer() {
 
       {/* メインフッターコンテンツ */}
       <div className="max-w-4xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           
           {/* サイト情報 */}
-          <div>
+          <div className="space-y-2">
+            <p className="text-lg font-black">あなたらしく、ちゃんと続く。</p>
+            <p className="text-xs font-medium text-[#bae6fd]">ダイエットキャラ診断16</p>
           </div>
 
           {/* ナビゲーション */}
           <div>
-            <h4 className="font-bold mb-4">コンテンツ</h4>
+            <h4 className="mb-4 font-black text-[#ffd166]">コンテンツ</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="text-gray-600 hover:text-blue-500 transition-colors">
+                <Link href="/" className="font-bold text-white transition-colors hover:text-[#7dd3fc]">
                   診断を始める
                 </Link>
               </li>
               <li>
-                <Link href="/gallery" className="text-gray-600 hover:text-blue-500 transition-colors">
+                <Link href="/gallery" className="font-bold text-white transition-colors hover:text-[#7dd3fc]">
                   キャラクター一覧
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-600 hover:text-blue-500 transition-colors">
+                <Link href="/about" className="font-bold text-white transition-colors hover:text-[#7dd3fc]">
                   ダイエット診断16とは
                 </Link>
               </li>
@@ -61,7 +63,7 @@ export default function Footer() {
 
           {/* その他 */}
           <div>
-            <h4 className="font-bold mb-4">その他</h4>
+            <h4 className="mb-4 font-black text-[#ffd166]">その他</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/contact" className="text-gray-600 hover:text-blue-500 transition-colors">
