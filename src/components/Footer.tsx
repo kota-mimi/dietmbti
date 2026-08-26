@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t-2 border-[#211b18] bg-[#17324d] py-10 text-white">
+    <footer className="border-t-2 border-[#211b18] bg-[#17324d] py-10 text-white">
       {/* LINEスタンプ宣伝バナー - 将来的に使用する場合は以下のコメントアウトを解除 */}
       {/*
       <div className="bg-green-500 text-white py-4 px-4 mb-6 mx-4 rounded-lg">

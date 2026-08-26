@@ -109,15 +109,15 @@ export default function HomeContent() {
       </main>
 
       <section className="border-y-2 border-[#211b18] bg-[#17324d] px-4 py-5 text-white">
-        <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-black">
+        <div className="mx-auto flex max-w-5xl flex-nowrap items-center justify-center gap-x-3 text-[11px] font-black sm:gap-x-8 sm:text-sm">
           <span>性格を4軸で分析</span><span className="text-[#ffd166]">×</span><span>全24問</span><span className="text-[#7dd3fc]">×</span><span>16キャラクター</span>
         </div>
       </section>
 
       <section className="px-4 py-16 text-center md:py-20">
         <p className="text-xs font-black tracking-[0.2em] text-[#0284c7]">MEET YOUR DIET CHARACTER</p>
-        <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-black md:text-5xl">続けられる方法は、性格で変わる。</h2>
-        <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-[#695c55]">あなたの回答から、得意な進め方やつまずきやすいポイントをキャラクターと一緒に紹介します。</p>
+        <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-black leading-tight md:text-5xl">続けられる方法は、<br />性格で変わる。</h2>
+        <p className="mx-auto mt-5 max-w-xl text-pretty leading-relaxed text-[#695c55]">あなたの回答から、得意な進め方やつまずきやすいポイントをキャラクターと一緒に紹介します。</p>
         <Link href="/gallery" className="mt-7 inline-flex items-center gap-2 font-black underline decoration-2 underline-offset-8">キャラクター一覧を見る <ArrowRight className="h-4 w-4" /></Link>
       </section>
     </div>
