@@ -12,7 +12,7 @@ const notoSansJP = Noto_Sans_JP({
 
 export default function NotFound() {
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-[#F5F9F5] to-[#E8F5E8] ${notoSansJP.className}`}>
+    <main className={`min-h-screen bg-app-gradient text-[#211b18] ${notoSansJP.className}`}>
       <div className="container mx-auto px-4 py-8 flex flex-col justify-center items-center min-h-screen text-center">
         
         {/* アニメーション付きアイコン */}
@@ -32,7 +32,7 @@ export default function NotFound() {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 bg-[#FF7043] rounded-full flex items-center justify-center shadow-lg"
+            className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-[28px] border-2 border-[#211b18] bg-[#FF7043] shadow-[6px_6px_0_#211b18] md:h-32 md:w-32"
           >
             <Salad className="w-12 h-12 md:w-16 md:h-16 text-white" />
           </motion.div>
@@ -68,7 +68,7 @@ export default function NotFound() {
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(76, 175, 80, 0.3)" }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 bg-[#4CAF50] hover:bg-[#45A049] text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300"
+              className="flex items-center gap-2 rounded-full border-2 border-[#211b18] bg-[#0ea5e9] px-8 py-4 text-lg font-black text-white shadow-[4px_4px_0_#211b18] transition-all duration-200"
             >
               <Home className="w-5 h-5" />
               トップページに戻る
@@ -79,7 +79,7 @@ export default function NotFound() {
             onClick={() => window.history.back()}
             whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(102, 102, 102, 0.3)" }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 bg-[#666666] hover:bg-[#555555] text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300"
+            className="flex items-center gap-2 rounded-full border-2 border-[#211b18] bg-white px-8 py-4 text-lg font-black text-[#211b18] shadow-[4px_4px_0_#211b18] transition-all duration-200"
           >
             <ArrowLeft className="w-5 h-5" />
             前のページに戻る
@@ -96,7 +96,7 @@ export default function NotFound() {
           {[
             { title: "ダイエット診断", desc: "16タイプの性格診断でダイエット方法を発見", link: "/" },
             { title: "質問を見る", desc: "24問の質問でタイプを判定", link: "/quiz/1?restart=1" },
-            { title: "タイプ一覧", desc: "16種類のダイエットタイプを確認", link: "/" }
+            { title: "タイプ一覧", desc: "16種類のダイエットタイプを確認", link: "/gallery" }
           ].map((item, index) => (
             <motion.div
               key={index}
@@ -104,7 +104,7 @@ export default function NotFound() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-              className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300"
+              className="rounded-[22px] border-2 border-[#211b18] bg-white p-6 shadow-[4px_4px_0_#211b18] transition-all duration-200"
             >
               <Link href={item.link}>
                 <h3 className="font-bold text-[#333333] mb-2 hover:text-[#4CAF50] transition-colors">
@@ -118,6 +118,6 @@ export default function NotFound() {
           ))}
         </motion.div>
       </div>
-    </div>
+    </main>
   )
 }

@@ -82,7 +82,7 @@ export default function AboutPage() {
   ]
 
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] ${notoSansJP.className}`}>
+    <main className={`min-h-screen bg-app-gradient text-[#211b18] ${notoSansJP.className}`}>
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         
         {/* 4つの軸 */}
@@ -90,11 +90,11 @@ export default function AboutPage() {
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-2xl shadow-lg p-8 md:p-10"
+          className="card-surface rounded-[30px] p-6 md:p-10"
         >
           {/* ヘッダー */}
           <div className="text-center mb-8">
-            <h1 className="text-xl md:text-3xl font-bold text-gray-800 mb-6 whitespace-nowrap">
+            <h1 className="mb-6 text-2xl font-black md:text-4xl">
               ダイエットMBTIの4つの分析軸
             </h1>
             
@@ -113,7 +113,7 @@ export default function AboutPage() {
 
           <div className="space-y-6">
             {axes.map((axis, index) => (
-              <div key={index} className="bg-[#E6F3FF] rounded-xl p-4 md:p-6">
+              <div key={index} className="rounded-[24px] border-2 border-[#211b18] bg-[#e6f3ff] p-4 md:p-6">
                 {/* 軸のタイトル */}
                 <div className="mb-4">
                   <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-2">
@@ -129,7 +129,7 @@ export default function AboutPage() {
                   {axis.items.map((item, itemIndex) => (
                     <div
                       key={itemIndex}
-                      className="bg-white rounded-xl p-4 space-y-3"
+                      className="space-y-3 rounded-[18px] border-2 border-[#211b18] bg-white p-4 shadow-[3px_3px_0_#211b18]"
                     >
                       <h3 className="text-base font-bold text-gray-800">
                         {item.type}
@@ -151,6 +151,6 @@ export default function AboutPage() {
         </motion.div>
 
       </div>
-    </div>
+    </main>
   )
 }

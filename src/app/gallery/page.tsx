@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Home } from 'lucide-react'
+import { ArrowRight, Sparkles } from 'lucide-react'
 import { Noto_Sans_JP } from 'next/font/google'
 import { diagramTypes } from '@/data/diagramTypes'
 import { Suspense } from 'react'
@@ -18,8 +18,8 @@ function GalleryContent() {
   const typeKeys = Object.keys(diagramTypes) as Array<keyof typeof diagramTypes>
   
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] ${notoSansJP.className}`}>
-      <div className="container mx-auto px-4 py-8">
+    <main className={`min-h-screen bg-app-gradient text-[#211b18] ${notoSansJP.className}`}>
+      <div className="container mx-auto max-w-7xl px-4 py-12 md:py-16">
         
         {/* ヘッダー */}
         <div className="text-center mb-8">
@@ -27,15 +27,16 @@ function GalleryContent() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-white mb-4"
+            className="mb-4 text-3xl font-black md:text-5xl"
           >
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border-2 border-[#211b18] bg-[#ffd166] px-4 py-2 text-xs font-black shadow-[3px_3px_0_#211b18]"><Sparkles className="h-4 w-4" />CHARACTER COLLECTION</span><br />
             全16タイプ診断結果
           </motion.h1>
           <motion.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-white/90"
+            className="text-base font-medium text-[#695c55] md:text-lg"
           >
             あなたはどのタイプに当てはまりますか？
           </motion.p>
@@ -46,7 +47,7 @@ function GalleryContent() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8"
+          className="mb-12 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 xl:grid-cols-4"
         >
           {typeKeys.map((typeCode, index) => {
             const type = diagramTypes[typeCode]
@@ -75,13 +76,13 @@ function GalleryContent() {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
-                className={`${cardBgColor} rounded-2xl p-4 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl`}
+                className={`${cardBgColor} overflow-hidden rounded-[26px] border-2 border-[#211b18] p-2 shadow-[5px_5px_0_#211b18] transition-transform duration-200 hover:-translate-y-1`}
               >
-                <div className="bg-white rounded-xl p-4 shadow-sm"
+                <div className="h-full rounded-[20px] bg-white p-2 md:p-4"
               >
                 {/* タイプコード - 小さく上部に表示 */}
-                <div className="text-center pt-4 pb-2">
-                  <h2 className={`text-lg font-bold ${textColor}`}>
+                <div className="pb-2 pt-2 text-center">
+                  <h2 className={`inline-flex rounded-full border-2 border-[#211b18] bg-[#fff8ee] px-3 py-1 text-xs font-black md:text-sm ${textColor}`}>
                     {typeCode}
                   </h2>
                 </div>
@@ -93,19 +94,19 @@ function GalleryContent() {
                     alt={`${type.name}のキャラクター`}
                     width={160}
                     height={180}
-                    className="w-36 h-auto"
+                    className="h-auto w-28 md:w-36"
                     quality={95}
                   />
                 </div>
 
-                <div className="px-4 pb-6 space-y-3">
+                <div className="space-y-3 px-1 pb-3 md:px-3 md:pb-5">
                   {/* タイプ名 */}
-                  <h3 className="text-sm font-bold text-[#333333] text-center leading-tight">
+                  <h3 className="text-center text-sm font-black leading-tight text-[#211b18] md:text-base">
                     {type.name}
                   </h3>
 
                   {/* 基本生態（3行でキリよく） */}
-                  <p className="text-sm text-[#666666] text-left leading-relaxed">
+                  <p className="hidden text-left text-sm leading-relaxed text-[#695c55] sm:block">
                     {(() => {
                       const text = type.basicEcology
                       // 3行表示用の文字数制限（約45-60文字で3行）
@@ -134,9 +135,9 @@ function GalleryContent() {
                   <div className="pt-3">
                     <Link
                       href={`/character/${characterSlugs[typeCodeStr]}`}
-                      className="block w-full bg-teal-500 hover:bg-teal-600 text-white text-sm font-medium py-3 px-4 rounded-full transition-colors text-center"
+                      className="flex w-full items-center justify-center gap-1 rounded-full border-2 border-[#211b18] bg-[#0ea5e9] px-3 py-2.5 text-center text-xs font-black text-white shadow-[3px_3px_0_#211b18] transition hover:-translate-y-0.5 md:text-sm"
                     >
-                      詳しく見る
+                      詳しく見る <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
                   </div>
@@ -157,22 +158,22 @@ function GalleryContent() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-white text-[#2196F3] font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="btn-primary inline-flex items-center gap-2 rounded-full px-8 py-3 font-black text-white transition-all duration-200"
             >
-              <Home className="w-5 h-5" />
               診断を始める
+              <ArrowRight className="h-5 w-5" />
             </motion.button>
           </Link>
         </motion.div>
       </div>
-    </div>
+    </main>
   )
 }
 
 export default function GalleryPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-[#fff8ee]">
         <div className="w-8 h-8 border-2 border-[#2196F3] border-t-transparent rounded-full animate-spin" />
       </div>
     }>

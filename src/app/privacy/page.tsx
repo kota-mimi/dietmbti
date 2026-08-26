@@ -12,10 +12,10 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] ${notoSansJP.className}`}>
+    <main className={`min-h-screen bg-app-gradient text-[#211b18] ${notoSansJP.className}`}>
       <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-xl md:text-2xl font-bold text-gray-800 mb-6 text-center">
+        <div className="card-surface rounded-[30px] p-6 md:p-10">
+          <h1 className="mb-8 text-center text-2xl font-black md:text-4xl">
             プライバシーポリシー
           </h1>
 
@@ -79,7 +79,7 @@ export default function PrivacyPage() {
               <p className="mb-3">
                 プライバシーポリシーに関するお問い合わせは、以下からお願いいたします。
               </p>
-              <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <div className="rounded-[18px] border-2 border-[#211b18] bg-[#e6f3ff] p-4">
                 <p><strong>メール：</strong> <a href="mailto:diet16.contact@gmail.com" className="text-blue-600 hover:underline">diet16.contact@gmail.com</a></p>
                 <p><strong>お問い合わせ：</strong> 
                   <a href="/contact" className="text-blue-600 hover:underline ml-1">こちら</a>
@@ -93,6 +93,6 @@ export default function PrivacyPage() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }

@@ -66,12 +66,12 @@ export default function Footer() {
             <h4 className="mb-4 font-black text-[#ffd166]">その他</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/contact" className="text-gray-600 hover:text-blue-500 transition-colors">
+                <Link href="/contact" className="font-bold text-white transition-colors hover:text-[#7dd3fc]">
                   お問い合わせ
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-gray-600 hover:text-blue-500 transition-colors">
+                <Link href="/privacy" className="font-bold text-white transition-colors hover:text-[#7dd3fc]">
                   プライバシーポリシー
                 </Link>
               </li>
@@ -80,7 +80,7 @@ export default function Footer() {
                   href="https://x.com/diet_chara16" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-blue-500 transition-colors"
+                  className="font-bold text-white transition-colors hover:text-[#7dd3fc]"
                 >
                   X (Twitter)
                 </a>
@@ -90,7 +90,7 @@ export default function Footer() {
                   href="https://www.instagram.com/diet_chara16?igsh=MXNwOWc2eHM0c3Y5bg%3D%3D&utm_source=qr"
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-blue-500 transition-colors"
+                  className="font-bold text-white transition-colors hover:text-[#7dd3fc]"
                 >
                   Instagram
                 </a>

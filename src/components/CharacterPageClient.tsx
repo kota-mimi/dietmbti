@@ -43,8 +43,8 @@ export default function CharacterPageClient({ typeCode, character }: Props) {
   }
 
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-[#87CEEB] to-[#B0E0E6] ${notoSansJP.className}`}>
-      <div className="container mx-auto px-4 py-8">
+    <main className={`min-h-screen bg-app-gradient text-[#211b18] ${notoSansJP.className}`}>
+      <div className="container mx-auto max-w-4xl px-4 py-10 md:py-16">
         
         {/* パンくずナビ */}
         <motion.nav
@@ -53,12 +53,12 @@ export default function CharacterPageClient({ typeCode, character }: Props) {
           transition={{ duration: 0.6 }}
           className="mb-8"
         >
-          <div className="flex items-center space-x-2 text-white/80 text-sm">
-            <Link href="/" className="hover:text-white transition-colors">ホーム</Link>
+          <div className="flex flex-wrap items-center gap-2 text-sm font-bold text-[#695c55]">
+            <Link href="/" className="transition-colors hover:text-[#0284c7]">ホーム</Link>
             <ArrowRight className="w-4 h-4" />
-            <Link href="/gallery" className="hover:text-white transition-colors">キャラクター一覧</Link>
+            <Link href="/gallery" className="transition-colors hover:text-[#0284c7]">キャラクター一覧</Link>
             <ArrowRight className="w-4 h-4" />
-            <span className="text-white font-medium">{character.name}</span>
+            <span className="font-black text-[#211b18]">{character.name}</span>
           </div>
         </motion.nav>
 
@@ -67,43 +67,43 @@ export default function CharacterPageClient({ typeCode, character }: Props) {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="max-w-md mx-auto"
+          className="mx-auto max-w-xl"
         >
-          <div className={`${cardBgColor} rounded-2xl p-6 shadow-lg`}>
-            <div className="bg-white rounded-xl p-6 shadow-sm text-center">
+          <div className={`${cardBgColor} rounded-[32px] border-2 border-[#211b18] p-3 shadow-[7px_7px_0_#211b18] md:p-5`}>
+            <div className="rounded-[25px] bg-white p-5 text-center md:p-8">
               {/* タイプコード */}
               <div className="mb-4">
-                <span className={`text-lg font-bold ${textColor} bg-gray-100 px-3 py-1 rounded-full`}>
+                <span className={`inline-flex rounded-full border-2 border-[#211b18] bg-[#ffd166] px-4 py-1.5 text-sm font-black ${textColor}`}>
                   {typeCode}
                 </span>
               </div>
 
               {/* キャラクター画像 */}
-              <div className="flex justify-center mb-6">
+              <div className="mb-6 flex justify-center rounded-[24px] bg-[#fff8ee] py-4">
                 <Image
                   src={`/characters/${typeCode === 'SRFQ' ? 'SRFQ_gallery.png' : typeCode === 'SECQ' ? 'SECQ_gallery.png' : typeCode === 'SEFL' ? 'SEFL_gallery.png' : typeCode === 'SRCL' ? 'SRCL_gallery.png' : typeCode === 'GEFQ' ? 'GEFQ_gallery.png' : typeCode === 'SRFL' ? 'SRFL_gallery.png' : typeCode === 'GRCQ' ? 'GRCQ_gallery.png' : typeCode === 'GEFL' ? 'GEFL_gallery.png' : typeCode === 'GECL' ? 'GECL_gallery.png' : typeCode === 'GECQ' ? 'GECQ_gallery.png' : typeCode === 'SRCQ' ? 'SRCQ_gallery.png' : typeCode === 'SEFQ' ? 'SEFQ_gallery.png' : typeCode === 'GRCL' ? 'GRCL_gallery.png' : typeCode === 'GRFQ' ? 'GRFQ_gallery.png' : typeCode === 'SECL' ? 'SECL_gallery.png' : typeCode === 'GRFL' ? 'GRFL_gallery.png' : typeCode + '_new3.png'}`}
                   alt={`${character.name}のキャラクター`}
                   width={200}
                   height={225}
-                  className="w-48 h-auto"
+                  className="h-auto w-52 md:w-60"
                   quality={95}
                 />
               </div>
 
               {/* キャラクター名とキャッチコピー */}
               <div className="mb-6">
-                <h1 className={`text-2xl md:text-3xl font-bold text-gray-800 mb-2 ${zenMaruGothic.className}`}>
+                <h1 className={`mb-2 text-3xl font-black text-[#211b18] md:text-4xl ${zenMaruGothic.className}`}>
                   {character.name}
                 </h1>
-                <p className={`text-lg ${textColor} font-medium`}>
+                <p className={`text-base font-black md:text-lg ${textColor}`}>
                   {character.catchcopy}
                 </p>
               </div>
 
               {/* 基本生態 */}
-              <div className="bg-gray-50 rounded-lg p-4 text-left">
-                <h3 className="text-lg font-bold text-gray-800 mb-3 text-center">基本生態</h3>
-                <p className="text-gray-700 leading-relaxed">
+              <div className="rounded-[20px] border-2 border-[#211b18] bg-[#fff8ee] p-5 text-left">
+                <h3 className="mb-3 text-center text-lg font-black text-[#211b18]">基本生態</h3>
+                <p className="font-medium leading-relaxed text-[#514741]">
                   {character.basicEcology}
                 </p>
               </div>
@@ -118,8 +118,8 @@ export default function CharacterPageClient({ typeCode, character }: Props) {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 text-center space-y-6"
         >
-          <div className="bg-white/90 backdrop-blur rounded-2xl p-6 max-w-sm mx-auto">
-            <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">
+          <div className="card-surface mx-auto max-w-sm rounded-[24px] p-6">
+            <h2 className="mb-3 text-lg font-black text-[#211b18] sm:text-xl">
               あなたのダイエット<br className="sm:hidden" />キャラは何かな？
             </h2>
             <p className="text-sm text-gray-600 mb-4">
@@ -130,7 +130,7 @@ export default function CharacterPageClient({ typeCode, character }: Props) {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#2196F3] hover:bg-[#1976D2] text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300"
+                className="btn-primary rounded-full px-8 py-3 font-black text-white transition-all duration-200"
               >
                 診断を始める
               </motion.button>
@@ -139,6 +139,6 @@ export default function CharacterPageClient({ typeCode, character }: Props) {
         </motion.div>
 
       </div>
-    </div>
+    </main>
   )
 }

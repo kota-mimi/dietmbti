@@ -254,7 +254,7 @@ export default function ResultPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-app-gradient ${notoSansJP.className}`}>
+    <main className={`result-page min-h-screen bg-app-gradient text-[#211b18] ${notoSansJP.className}`}>
       <div className="container mx-auto max-w-3xl px-4 py-8 md:py-12">
 
         {/* メインカード */}
@@ -263,7 +263,7 @@ export default function ResultPage() {
           initial={{ scale: 0.96, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="card-surface overflow-hidden rounded-3xl px-5 py-10 md:px-12 md:py-14"
+          className="card-surface overflow-hidden rounded-[32px] px-5 py-10 md:px-12 md:py-14"
         >
 
           {/* ── ヒーロー：タイプ名を主役に ── */}
@@ -288,7 +288,7 @@ export default function ResultPage() {
               )}
             </div>
 
-            <span className="mt-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-[11px] font-bold tracking-[0.22em] text-brand-600">
+            <span className="mt-3 inline-block rounded-full border-2 border-[#211b18] bg-[#ffd166] px-3 py-1 text-[11px] font-black tracking-[0.22em] text-[#211b18]">
               {userType}
             </span>
             <h1 className={`mt-3 text-[34px] font-bold leading-tight text-ink-900 md:text-5xl ${zenMaruGothic.className}`}>
@@ -555,6 +555,6 @@ export default function ResultPage() {
         </div>
 
       </div>
-    </div>
+    </main>
   )
 }

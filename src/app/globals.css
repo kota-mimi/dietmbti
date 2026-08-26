@@ -98,6 +98,29 @@ body {
   color: #0b91ca;
 }
 
+/* Result content keeps its long-form structure, but shares the same paper-card language. */
+.result-page section > div[class*="rounded-2xl"],
+.result-page li[class*="rounded-2xl"] {
+  border-width: 2px;
+  border-color: #211b18;
+  box-shadow: 3px 3px 0 #211b18;
+}
+
+.result-page button,
+.result-page a[class*="rounded-full"] {
+  font-weight: 800;
+}
+
+.result-page button[class*="rounded-full"],
+.result-page a[class*="rounded-full"] {
+  border: 2px solid #211b18;
+  box-shadow: 3px 3px 0 #211b18;
+}
+
+.result-page div[class*="h-2.5"][class*="rounded-full"] {
+  border: 1px solid #211b18;
+}
+
 /* ===== Animations ===== */
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
